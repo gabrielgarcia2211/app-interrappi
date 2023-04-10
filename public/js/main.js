@@ -21,7 +21,8 @@ $(document).ready(function () {
             nro_cuenta_form1: {
                 required: true,
                 digits: true,
-                maxlength: 20,
+                minlength: 20,
+                maxlength: 20
             },
             nombre_d_form1: {
                 required: true,
