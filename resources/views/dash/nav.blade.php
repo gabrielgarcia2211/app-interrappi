@@ -62,7 +62,7 @@
                     <a href="{{ route('site.otrosServicios') }}" class="smoothScroll">OTROS SERVICIOS</a>
                 </li>
                 <li><a href="{{ route('site.contacto') }}" class="smoothScroll">CONTACTO</a></li>
-                <li><a class="init-sesion" href="{{ route('site.login') }}">
+                {{-- <li><a class="init-sesion" href="{{ route('site.login') }}">
                         <button type="button" class="btn btn-primary"
                             style="
                             background-color: transparent;
@@ -70,7 +70,7 @@
                         ">
                             Iniciar Sesión <img src="{{ asset('assets/icon/people.svg') }}" width="20px" />
                         </button></a>
-                </li>
+                </li> --}}
                 <!-- <li><a href="#sponsors" class="smoothScroll">Sponsors</a></li>
             <li><a href="#contact" class="smoothScroll">Contact</a></li> -->
             </ul>
