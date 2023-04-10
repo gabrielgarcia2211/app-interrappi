@@ -1,34 +1,12 @@
-<div class="navbar navbar-fixed-top custom-navbar " role="navigation">
-    <div class="row">
-        <div class="col-sm-6" style="text-align: center;">
-            <img class="infoHeader" src="{{ asset('assets/icon/clock.svg') }}" width="20px" style="margin: 0px;" />
-            &nbsp;
-            &nbsp;
-            <a class="hour" style="color: white">
-                Lunes - Viernes 10 AM - 8 PM | Sábados y Domingos 10 AM - 5PM
-            </a>
-        </div>
+<div class="navbar navbar-fixed-top custom-navbar" role="navigation" style="padding-bottom: 0px;">
+    <div>
+        <a href="#" class="navbar-brand" style="padding-top: 0px;"><img
+                src="{{ asset('assets/images/INTERRAPPI.png') }}" width="120px" height="60px" /></a>
+        <img class="infoHeader" src="{{ asset('assets/icon/clock.svg') }}" width="20px" style="margin: 0px;" />
         &nbsp;
-        <div class="col-sm-6" style="text-align: center;">
-            <div class="row">
-                <div class="col-sm-4">
-                    <button type="button" class="btn btn-success"
-                        style="background-color: transparent; color: yellowgreen; white-space: normal;">
-                        <a href="{{ route('site.verificarPaypal') }}">Verifica Tu Cuenta de PayPal</a>
-                    </button>
-                </div>
-                &nbsp;
-                <div class="col-sm-4">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#status_formus">
-                        Revisar Status
-                    </button>
-                    <a href="https://www.facebook.com/Interrappi.co"><img src="{{ asset('assets/icon/facebook.svg') }}"
-                            width="20px" /></a>
-                    <a href="https://www.instagram.com/interrappi/"><img src="{{ asset('assets/icon/instagram.svg') }}"
-                            width="20px" /></a>
-                </div>
-            </div>
-        </div>
+        <a class="hour" style="color: white" style="text-align: center;">
+            Lunes - Viernes 10 AM - 8 PM | Sábados y Domingos 10 AM - 5PM
+        </a>
     </div>
     <div class="container">
         <!-- navbar header -->
@@ -38,9 +16,6 @@
                 <span class="icon icon-bar"></span>
                 <span class="icon icon-bar"></span>
             </button>
-            &nbsp;
-            <a href="#" class="img-fluid"><img src="{{ asset('assets/images/INTERRAPPI.png') }}" width="150px"
-                    height="60px" /></a>
         </div>
 
         <div class="collapse navbar-collapse">
@@ -97,7 +72,7 @@
                         </button></a>
                 </li>
                 <!-- <li><a href="#sponsors" class="smoothScroll">Sponsors</a></li>
-                <li><a href="#contact" class="smoothScroll">Contact</a></li> -->
+            <li><a href="#contact" class="smoothScroll">Contact</a></li> -->
             </ul>
         </div>
     </div>

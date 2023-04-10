@@ -2,20 +2,20 @@
 
 @section('content')
     <!-- =========================
-                PRE LOADER
-            ============================== -->
+                                    PRE LOADER
+                                ============================== -->
     <div class="preloader">
         <div class="sk-rotating-plane"></div>
     </div>
 
     <!-- =========================
-            NAVIGATION LINKS
-            ============================== -->
+                                NAVIGATION LINKS
+                                ============================== -->
     @include('dash.nav')
 
     <!-- =========================
-            INTRO SECTION
-            ============================== -->
+                                INTRO SECTION
+                                ============================== -->
 
     <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="2000" id="bs-carousel">
         <!-- Overlay -->
@@ -66,11 +66,26 @@
     </div>
 
     <!-- =========================
-            OVERVIEW SECTION
-            ============================== -->
+                                OVERVIEW SECTION
+                                ============================== -->
     <section id="overview" class="parallax-section">
         <div class="container">
             <center>
+                <div class="statusInfo">
+                    <div class="row" style="width: 40%">
+                        <div class="col-sm-6">
+                            <button class="btn btn-success">
+                                <a href="{{ route('site.verificarPaypal') }}">Verifica Tu Cuenta de PayPal</a>
+                            </button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#status_formus">
+                                Revisar Status
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="bancoInfo">
                     Hoy transferimos a todos los bancos de Venezuela desde:
                     <br />
@@ -89,7 +104,8 @@
                             style="margin: 0 auto;" />
                         <div class="speakers-thumb">
                             <h3>TASA PAYPAL</h3>
-                            <h6>{{ 'US $1.00 = '. (optional(App\Models\TasaCambio::where('descripcion', 'pay-paypal')->first())->valor ?? "N/A") . ' Bs' }}</h6>
+                            <h6>{{ 'US $1.00 = ' . (optional(App\Models\TasaCambio::where('descripcion', 'pay-paypal')->first())->valor ?? 'N/A') . ' Bs' }}
+                            </h6>
                         </div>
                     </div>
                 </div>
@@ -153,13 +169,13 @@
     </section>
 
     <!-- =========================
-            DETAIL SECTION
-            ============================== -->
+                                DETAIL SECTION
+                                ============================== -->
     @include('dash.form')
 
     <!-- =========================
-            CONTACT SECTION
-            ============================== -->
+                                CONTACT SECTION
+                                ============================== -->
     <section id="contact" class="parallax-section">
         <div class="container" data-wow-delay="0.6s">
             <p class="elegirIntergiros">¿POR QUÉ ELEGIR INTERGIROS?</p>
@@ -233,9 +249,8 @@
                     <div class="modal-body">
                         <div class="group">
                             <label for="email" class="label">Cedula</label>
-                            <input type="number" class="input" id="status_identificacion" 
-                                onkeydown="if(event.keyCode === 13) return false;"
-                                name="status_identificacion"
+                            <input type="number" class="input" id="status_identificacion"
+                                onkeydown="if(event.keyCode === 13) return false;" name="status_identificacion"
                                 style="margin-right: 5px !important;">
                         </div>
                         <br>
@@ -254,8 +269,8 @@
     </div>
 
     <!-- =========================
-            FOOTER SECTION
-            ============================== -->
+                                FOOTER SECTION
+                                ============================== -->
     @include('dash.footer')
 
     <!-- Back top -->
