@@ -72,13 +72,13 @@
         <div class="container">
             <center>
                 <div class="statusInfo">
-                    <div class="row" style="width: 40%">
-                        <div class="col-sm-6">
+                    <div id="status-button" class="row" style="width: 40%">
+                        <div class="col-sm-6" style="margin-top: 5px">
                             <button class="btn btn-success">
                                 <a href="{{ route('site.verificarPaypal') }}">Verifica Tu Cuenta de PayPal</a>
                             </button>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-6" style="margin-top: 5px">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#status_formus">
                                 Revisar Status
                             </button>

@@ -999,8 +999,9 @@ Image credits: unsplash.com
 	margin-bottom: 20px;
 }
 
+
 @media only screen and (max-width: 1199px) {
-	.statusInfo {
-		width: none;
+	#status-button {
+		width: auto !important;
 	}
 }
