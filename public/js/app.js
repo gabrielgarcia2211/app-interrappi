@@ -59386,7 +59386,14 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         headerName: "Imagen Comprobante",
         field: "imagen_comprobante",
-        minWidth: 200
+        minWidth: 200,
+        cellRenderer: function cellRenderer(params) {
+          if (params.data.imagen_comprobante) {
+            return '<button type="button" class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i></button>';
+          } else {
+            return '<button type="button" class="btn btn-danger"><i class="fa fa-eye-slash" aria-hidden="true"></i></button>';
+          }
+        }
       }, {
         headerName: "Email Comprobante",
         field: "email_comprobante",
@@ -59578,6 +59585,18 @@ __webpack_require__.r(__webpack_exports__);
                 imageHeight: 300
               });
             }
+          });
+        }
+      } else if (event.colDef.field === "imagen_comprobante") {
+        var imagen_comprobante = this.gridApi.getSelectedRows()[0]["imagen_comprobante"];
+        if (imagen_comprobante) {
+          this.$swal.fire({
+            title: "Voucher Cargado",
+            imageUrl: imagen_comprobante,
+            imageWidth: 300,
+            imageHeight: 300,
+            showCancelButton: true,
+            confirmButtonColor: "#ff0000"
           });
         }
       }

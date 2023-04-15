@@ -420,7 +420,7 @@ function get_form_user(event) {
 function get_comprobante(path) {
     Swal.fire({
         title: "Comprobante Cargado",
-        imageUrl: path,
+        imageUrl: "../"+path,
         imageWidth: 300,
         imageHeight: 300,
     });
