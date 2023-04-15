@@ -1,9 +1,10 @@
 var $validator_form_paypal;
+var $validator_form_bolivares_colven;
 var $validator_status_formu;
 var tasa_cambio = "";
 // VALIDACION DE CAMPOS
 $(document).ready(function () {
-    // Validamos los campos importantes
+    // Validamos los campos importantes - FORM1 INCIO
     $validator_form_paypal = $("#pay-paypal-form").validate({
         rules: {
             nombre_b_form1: {
@@ -22,7 +23,7 @@ $(document).ready(function () {
                 required: true,
                 digits: true,
                 minlength: 20,
-                maxlength: 20
+                maxlength: 20,
             },
             nombre_d_form1: {
                 required: true,
@@ -44,6 +45,7 @@ $(document).ready(function () {
             },
             monto_enviar_d_form1: {
                 required: true,
+                min: 5,
             },
             email_d_form1: {
                 required: true,
@@ -74,6 +76,54 @@ $(document).ready(function () {
         },
     });
     $("#monto_enviar_d_form1").prop("disabled", true);
+    // Validamos los campos importantes - FORM2 BolivaresColVen
+    $validator_form_bolivares_colven = $("#BolivaresColVen-form").validate({
+        rules: {
+            nombre_b_form2: {
+                required: true,
+                maxlength: 100,
+            },
+            cedula_b_form2: {
+                required: true,
+                digits: true,
+                maxlength: 11,
+            },
+            banco_b_form2: {
+                required: true,
+            },
+            nro_cuenta_form2: {
+                required: true,
+                digits: true,
+                maxlength: 20,
+            },
+            nombre_d_form2: {
+                required: true,
+                maxlength: 100,
+            },
+            correo_d_form2: {
+                required: true,
+                email: true,
+                maxlength: 50,
+            },
+            telefono_d_form2: {
+                required: true,
+                digits: true,
+                maxlength: 20,
+            },
+            identificacion_d_form2: {
+                required: true,
+                digits: true,
+                maxlength: 20,
+            },
+            monto_enviar_d_form2: {
+                required: true,
+                min: 10000,
+            },
+            file_d_form2: {
+                required: true,
+            },
+        },
+    });
 });
 
 $(".group-bolivares").click(function () {
@@ -97,7 +147,8 @@ $(".group-bolivares").click(function () {
     }
 });
 
-// CAPTURAMOS EL TIPO DE MONEDA PARA LA CONVERSION - FORM1
+// CAPTURAMOS EL TIPO DE MONEDA PARA LA CONVERSION
+// FORM1 INCIO
 /**
  * key ->
  * pay-paypal
@@ -309,6 +360,7 @@ function get_form_user(event) {
                 <th>Creado</th>
                 <th>Estado</th>
                 <th>Comporbante</th>
+                <th>Voucher</th>
               </tr>
             </thead><tbody>`;
                 response.forEach((ta) => {
@@ -326,7 +378,12 @@ function get_form_user(event) {
                         template += `<td style="text-align: center;"><button type="button" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button></td>`;
                     }
                     if (ta.comprobante) {
-                        template += `<td style="text-align: center;"><button type="button" onclick="get_comprobante('${ta.comprobante}')" class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i></button></td></tr>`;
+                        template += `<td style="text-align: center;"><button type="button" onclick="get_comprobante('${ta.comprobante}')" class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i></button></td>`;
+                    } else {
+                        template += `<td style="text-align: center;"><button type="button" class="btn btn-danger"><i class="fa fa-eye-slash" aria-hidden="true"></i></button></td>`;
+                    }
+                    if (ta.voucher) {
+                        template += `<td style="text-align: center;"><button type="button" onclick="get_comprobante('${ta.voucher}')" class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i></button></td></tr>`;
                     } else {
                         template += `<td style="text-align: center;"><button type="button" class="btn btn-danger"><i class="fa fa-eye-slash" aria-hidden="true"></i></button></td></tr>`;
                     }
@@ -394,6 +451,96 @@ function dev_formato_moneda(id, value) {
         success: function (response) {
             $("#monto_pagar_d_form1").val(response.monto_a_pagar);
             $("#monto_recibir_d_form1").val(response.monto_a_recibir);
+        },
+        error: function (error) {},
+    });
+}
+
+// FORM2 BolivaresColVen
+
+function send_form_bolivares_colven() {
+    var url = $("#BolivaresColVen-form").attr("action");
+    var $valid = $("#BolivaresColVen-form").valid();
+    if (!$valid) {
+        $validator_form_bolivares_colven.focusInvalid();
+        return false;
+    }
+
+    var parametros = new FormData();
+    var fields = $("#BolivaresColVen-form").serializeArray();
+
+    $.each(fields, function (i, field) {
+        parametros.append(field.name, field.value);
+    });
+
+    parametros.append("archivo", $("#file_d_form2")[0].files[0]);
+
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        method: "POST",
+        url: url,
+        data: parametros,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+            Swal.fire({
+                title: "Cargando",
+                text: "Creando solicitud...",
+                imageUrl: "https://img.webme.com/pic/a/andwas/cargando5.gif",
+                imageWidth: 200,
+                imageHeight: 180,
+                imageAlt: "Creando solicitud",
+                showCancelButton: false,
+                showConfirmButton: false,
+            });
+        },
+        success: function (response) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Solicitud Guardada",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        },
+        complete: function (res) {},
+        error: function (res) {
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: res.responseText,
+                showConfirmButton: false,
+                timer: 5000,
+            });
+        },
+    });
+    return false;
+}
+
+function dev_formato_moneda_form2(id, value) {
+    var url = "../tasa/get/data";
+    $("#" + id).val(value);
+    if (value < 10000) {
+        $("#alerta_monto_form2").show();
+        return;
+    } else {
+        $("#alerta_monto_form2").hide();
+    }
+    // Obtener la tasa de cambio
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        type: "POST",
+        url: url,
+        data: {
+            tasa: "pay-bolivares-colven",
+            monto: value
+        },
+        success: function (response) {
+            $("#conversion_form2").html("<b>$</b>" + response.monto_a_recibir);
         },
         error: function (error) {},
     });

@@ -71,27 +71,32 @@ class TasaController extends Controller
     {
         # Ecribimos logs de la información a procesar
         Log::debug('App\Controllers\TasaController::get_tasa_convert- data ' . json_encode($request->all()));
+
         if (!empty($request->input('tasa'))  && !empty($request->input('monto'))) {
-
             $tasa = $request->input('tasa');
-            $monto = $request->input('monto');
-            // Las Comisiones PayPal (5,4% + $0.3 USD)
-            $comision_porcentaje = 0.054;
-            $comision_fija = 0.3;
-
             // Aquí se puede utilizar la tasa del día obtenida de una fuente externa
             $response = TasaCambio::where("descripcion", $tasa)->first();
             if (empty($response)) {
                 return false;
             }
+            if ($tasa == "pay-bolivares-colven") {
+                $monto = $request->input('monto');
+                // Las Comisiones de BolivaresColVen  (Tasa * Monto)
+                $comision = $monto * $response->valor;
+                return response()->json(['monto_a_recibir' => number_format($comision, 2, '.', ',')]);
+            } else if ($tasa == "pay-paypal") {
+                $monto = $request->input('monto');
+                // Las Comisiones PayPal (5,4% + $0.3 USD)
+                $comision_porcentaje = 0.054;
+                $comision_fija = 0.3;
+                // Calculamos la comisión
+                $comision = ($monto * $comision_porcentaje + $comision_fija) + $monto;
+                // Cálculo del monto a recibir en bolívares
+                $monto_a_recibir = $monto * $response->valor;
 
-            // Calculamos la comisión
-            $comision = ($monto * $comision_porcentaje + $comision_fija) + $monto;
-            // Cálculo del monto a recibir en bolívares
-            $monto_a_recibir = $monto * $response->valor;
 
-
-            return response()->json(['monto_a_pagar' => round($comision,2), 'monto_a_recibir' => $monto_a_recibir]);
+                return response()->json(['monto_a_pagar' => round($comision, 2), 'monto_a_recibir' => $monto_a_recibir]);
+            }
         }
     }
 }

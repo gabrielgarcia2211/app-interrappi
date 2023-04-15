@@ -31,7 +31,8 @@
             <h3>Valor al 11th febrero 2023</h3>
             <h1>´´´´´´´´´´´´´´´´´´´´´´´´</h1>
             <h1>Tasa = 220</h1>
-            <h1>10,000 Pesos = 45.454 Bs.S</h1>
+            <h2>{{ '$10.000 Pesos = ' . (optional(App\Models\TasaCambio::where('descripcion', 'pay-bolivares-colven')->first())->valor ?? 'N/A') . ' Bs' }}
+            </h2>
         </center>
     </div>
     <center>
@@ -49,13 +50,14 @@
         </div>
     </center>
     <div>
-        <div class="formuPayCol">
+        <div class="formuPayCol" id="formuPayCol">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
                     <!--      Wizard container        -->
                     <div class="wizard-container" style="margin-bottom: 50px; margin-top: 20px;">
                         <div class="card-wiz wizard-card" data-color="azzure" id="wizard">
-                            <form action="" method="">
+                            <form action="../form/save/BolivaresColVen" method="POST" id="BolivaresColVen-form">
+                                @csrf
                                 <div class="wizard-navigation">
                                     <ul>
                                         <li>
@@ -88,7 +90,7 @@
                                                         NOMBRE DEL BENEFICIARIO:
                                                     </h4>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id=""
+                                                        <input type="text" class="form-control" id="nombre_b_form2" name="nombre_b_form2"
                                                             placeholder="NOMBRE" />
                                                     </div>
                                                 </div>
@@ -97,7 +99,7 @@
                                                         CEDULA DEL BENEFICIARIO:
                                                     </h4>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id=""
+                                                        <input type="text" class="form-control" id="cedula_b_form2" name="cedula_b_form2"
                                                             placeholder="NRO DOCUMENTO" />
                                                     </div>
                                                 </div>
@@ -106,7 +108,7 @@
                                                         BANCO
                                                     </h4>
                                                     <div class="form-group">
-                                                        <select class="form-control">
+                                                        <select class="form-control" id="banco_b_form2" name="banco_b_form2">
                                                             <option disabled="" selected="">
                                                                 - SELECCIONAR BANCO -
                                                             </option>
@@ -128,60 +130,60 @@
                                                         NUMERO DE CUENTA:
                                                     </h4>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id=""
+                                                        <input type="text" class="form-control" id="nro_cuenta_form2" name="nro_cuenta_form2"
                                                             placeholder="NRO DE CUENTA" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-6">
                                                     <h4 class="sub-descripction-label">
                                                         TIPO DE PERSONA:
                                                     </h4>
                                                     <div class="form-check">
-                                                        <input class="form-check-input radio-p" name="radioNoLabel"
-                                                            type="radio" value="check_v_bc" id="check_v_bc" />
+                                                        <input class="form-check-input radio-p" name="radioNoLabel2"
+                                                            type="radio" value="V" id="check_v_bc" checked/>
                                                         <label class="form-check-label" for="check_v_bc">
                                                             V
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input radio-p" name="radioNoLabel"
-                                                            type="radio" value="check_e_bc" id="check_e_bc" />
+                                                        <input class="form-check-input radio-p" name="radioNoLabel2"
+                                                            type="radio" value="E" id="check_e_bc" />
                                                         <label class="form-check-label" for="check_e_bc">
                                                             E
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input radio-p" name="radioNoLabel"
-                                                            type="radio" value="check_j_bc" id="check_j_bc" />
+                                                        <input class="form-check-input radio-p" name="radioNoLabel2"
+                                                            type="radio" value="J" id="check_j_bc" />
                                                         <label class="form-check-label" for="check_j_bc">
                                                             J
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input radio-p" name="radioNoLabel"
-                                                            type="radio" value="check_p_bc" id="check_p_bc" />
+                                                        <input class="form-check-input radio-p" name="radioNoLabel2"
+                                                            type="radio" value="P" id="check_p_bc" />
                                                         <label class="form-check-label" for="check_p_bc">
                                                             P
                                                         </label>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-6">
                                                     <h4 class="sub-descripction-label">
                                                         TIPO DE CUENTA
                                                     </h4>
                                                     <div class="form-check">
                                                         <input class="form-check-input radio-p" name="radioTypeBC"
-                                                            type="radio" value="check_ahorros_bc"
-                                                            id="check_ahorros_bc" />
+                                                            type="radio" value="ahorros"
+                                                            id="check_ahorros_bc" checked/>
                                                         <label class="form-check-label" for="check_ahorros_bc">
                                                             AHORROS
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input radio-p" name="radioTypeBC"
-                                                            type="radio" value="check_corriente_bc"
+                                                            type="radio" value="corriente"
                                                             id="check_corriente_bc" />
                                                         <label class="form-check-label" for="check_corriente_bc">
                                                             CORRIENTE
@@ -197,8 +199,17 @@
                                                         TU NOMBRE:
                                                     </h4>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id=""
+                                                        <input type="text" class="form-control" id="nombre_d_form2" name="nombre_d_form2"
                                                             placeholder="NOMBRE" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <h4 class="sub-descripction-label">
+                                                        TU IDENTIFICACION:
+                                                    </h4>
+                                                    <div class="form-group">
+                                                        <input type="number" class="form-control" id="identificacion_d_form2" name="identificacion_d_form2"
+                                                            placeholder="IDENTIFICACION" />
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
@@ -206,7 +217,7 @@
                                                         CORREO ELECTRONICO:
                                                     </h4>
                                                     <div class="form-group">
-                                                        <input type="number" class="form-control" id=""
+                                                        <input type="email" class="form-control" id="correo_d_form2" name="correo_d_form2"
                                                             placeholder="EMAIL" />
                                                     </div>
                                                 </div>
@@ -215,7 +226,7 @@
                                                         TELEFONO:
                                                     </h4>
                                                     <div class="form-group">
-                                                        <input type="number" class="form-control" id=""
+                                                        <input type="number" class="form-control" id="telefono_d_form2" name="telefono_d_form2"
                                                             placeholder="NRO TELEFONO" />
                                                     </div>
                                                 </div>
@@ -228,12 +239,13 @@
                                                         MONTO A CAMBIAR $:
                                                     </h4>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id=""
-                                                            placeholder="MONTO" />
+                                                        <input type="text" class="form-control" id="monto_enviar_d_form2" name="monto_enviar_d_form2"
+                                                            placeholder="MONTO" onkeyup="dev_formato_moneda_form2(id, value)"/>
+                                                        <div id="alerta_monto_form2" class="alert alert-danger" style="display: none">El valor minimo es $10.000*</div>
                                                     </div>
                                                     <p style="text-align: left; display: inline-block;">Conversión a
                                                         Bolívares:</p>
-                                                    <p style="text-align: left; display: inline-block;"><b>$ 00:</b></p>
+                                                    <p style="text-align: left; display: inline-block;" id="conversion_form2"><b>$</b>00</p>
                                                 </div>
                                                 <div class="col-sm-5" style="text-align: left;">
                                                     <p style="text-align: justify;"><i class="fa-solid fa-image"></i>
@@ -243,20 +255,19 @@
                                                         de archivos permitidos: gif, jpeg, png, jpg | Cantidad maxima de
                                                         archivo: 1 | Cantidad minima de archivo: 1</p>
                                                     <hr>
-                                                    <input type="file" class="form-control" id="customFile" />
+                                                    <input type="file" class="form-control" id="file_d_form2" name="file_d_form2" />
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="row" style="text-align: center;">
                                                 <div class="col-md-12">
-                                                    <button type="button" class="btn btn-primary" style="width: 100%;">
+                                                    <button type="button" onclick="send_form_bolivares_colven()" class="btn btn-primary" style="width: 100%;">
                                                         Enviar
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                         </div>
                         </form>

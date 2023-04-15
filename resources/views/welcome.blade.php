@@ -104,8 +104,8 @@
                             style="margin: 0 auto;" />
                         <div class="speakers-thumb">
                             <h3>TASA PAYPAL</h3>
-                            <h6>{{ 'US $1.00 = ' . (optional(App\Models\TasaCambio::where('descripcion', 'pay-paypal')->first())->valor ?? 'N/A') . ' Bs' }}
-                            </h6>
+                            <h2>{{ 'US $1.00 = ' . (optional(App\Models\TasaCambio::where('descripcion', 'pay-paypal')->first())->valor ?? 'N/A') . ' Bs' }}
+                            </h2>
                         </div>
                     </div>
                 </div>
@@ -160,7 +160,8 @@
                             style="margin: 0 auto;" />
                         <div class="speakers-thumb">
                             <h3>TASA COLOMBIA</h3>
-                            {{-- <h6>Marketing Guru</h6> --}}
+                            <h2>{{ '$10.000 = ' . (optional(App\Models\TasaCambio::where('descripcion', 'pay-bolivares-colven')->first())->valor ?? 'N/A') . ' Bs' }}
+                            </h2>
                         </div>
                     </div>
                 </div>

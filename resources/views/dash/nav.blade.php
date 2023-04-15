@@ -1,8 +1,9 @@
 <div class="navbar navbar-fixed-top custom-navbar" role="navigation" style="padding-bottom: 0px;">
     <div>
-        <a href="#" class="navbar-brand" style="padding-top: 0px;"><img
-                src="{{ asset('assets/images/INTERRAPPI.png') }}" width="120px" height="60px" /></a>
-        <img class="infoHeader" src="{{ asset('assets/icon/clock.svg') }}" width="20px" style="margin: 0px;" />
+        <a href="#" class="navbar-brand" style="padding-top: 10px;"><img
+                src="{{ asset('assets/images/INTERRAPPI.png') }}" width="100px" height="40px" /></a>
+        <img class="infoHeader" src="{{ asset('assets/icon/clock.svg') }}" style="margin-left: 0px;" width="20px" />
+        &nbsp;
         &nbsp;
         <a class="hour" style="color: white" style="text-align: center;">
             Lunes - Viernes 10 AM - 8 PM | Sábados y Domingos 10 AM - 5PM
@@ -11,7 +12,7 @@
     <div class="container">
         <!-- navbar header -->
         <div class="navbar-header">
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon icon-bar"></span>
                 <span class="icon icon-bar"></span>
                 <span class="icon icon-bar"></span>
@@ -20,13 +21,17 @@
 
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ route('site.welcome') }}" class="smoothScroll">INICIO</a></li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
+                    <p href="#" class="smoothScroll"
+                        style="cursor: pointer; color: #67c6dc; padding: 15px; margin: 0px;" id="inicio">INICIO</p>
+                </li>
+                <li class="nav-item">
+                    <p class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"
+                        style="cursor: pointer; color: #67c6dc; padding: 15px; margin: 0px;" id="peru">
                         PERÚ
                         <span class="fa fa-angle-down"></span>
-                    </a>
+                    </p>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ route('site.CamPayPeru') }}"> Cambiar Paypal en Perú</a>
                         <br />
@@ -35,11 +40,12 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
+                    <p class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" style="cursor: pointer; color: #67c6dc; padding: 15px; margin: 0px;"
+                        id="menus">
                         ECUADOR
                         <span class="fa fa-angle-down"></span>
-                    </a>
+                    </p>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#"> Cambiar Paypal en Ecuador</a>
                         <br />
@@ -48,20 +54,26 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
+                    <p class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" style="cursor: pointer; color: #67c6dc; padding: 15px; margin: 0px;"
+                        id="menus">
                         COLOMBIA
                         <span class="fa fa-angle-down"></span>
-                    </a>
+                    </p>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ route('site.BolivaresColVen') }}">
                             Enviar Bolivares de Colombia a Venezuela</a>
                     </div>
                 </li>
                 <li>
-                    <a href="{{ route('site.otrosServicios') }}" class="smoothScroll">OTROS SERVICIOS</a>
+                    <p href="#" class="smoothScroll"
+                        style="cursor: pointer; color: #67c6dc; padding: 15px; margin: 0px;" id="otros_servicios">OTROS
+                        SERVICIOS</p>
                 </li>
-                <li><a href="{{ route('site.contacto') }}" class="smoothScroll">CONTACTO</a></li>
+                <li>
+                    <p href="#" class="smoothScroll"
+                        style="cursor: pointer; color: #67c6dc; padding: 15px; margin: 0px;" id="contacto">CONTACTO</p>
+                </li>
                 {{-- <li><a class="init-sesion" href="{{ route('site.login') }}">
                         <button type="button" class="btn btn-primary"
                             style="
@@ -77,3 +89,24 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Obtener el elemento p por su ID
+    var inicio = document.getElementById("inicio");
+    var otros = document.getElementById("otros_servicios");
+    var contacto = document.getElementById("contacto");
+
+    // Agregar un controlador de eventos de clic al elemento p
+    inicio.addEventListener("click", function() {
+        // Redirigir a la página de inicio
+        window.location.href = "{{ route('site.welcome') }}";
+    });
+    otros.addEventListener("click", function() {
+        // Redirigir a la página de inicio
+        window.location.href = "{{ route('site.otrosServicios') }}";
+    });
+    contacto.addEventListener("click", function() {
+        // Redirigir a la página de inicio
+        window.location.href = "{{ route('site.contacto') }}";
+    });
+</script>

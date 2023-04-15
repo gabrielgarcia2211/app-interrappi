@@ -87,7 +87,7 @@ export default {
     onUpdateTasa() {
       let data = {
         id: this.selectTasa.id,
-        valor: this.labelValueNew,
+        valor: this.labelValueNew.replace(/\,/g, '.'),
       };
       axios
         .get(`../home/update/tasa/${data.id}/${data.valor}`)
