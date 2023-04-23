@@ -466,6 +466,20 @@ function send_form_bolivares_colven() {
         return false;
     }
 
+    let elementoActivo = document.querySelector(
+        'input[id="check_terminos_bolivares_colven"]:checked'
+    );
+    if (!elementoActivo) {
+        Swal.fire({
+            position: "center",
+            icon: "warning",
+            title: "Debe aceptar los terminos y condiciones",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+        return;
+    }
+
     var parametros = new FormData();
     var fields = $("#BolivaresColVen-form").serializeArray();
 

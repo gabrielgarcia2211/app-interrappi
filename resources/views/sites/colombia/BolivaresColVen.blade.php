@@ -2,15 +2,15 @@
 
 @section('content')
     <!-- =========================
-         PRE LOADER
-    ============================== -->
+             PRE LOADER
+        ============================== -->
     <div class="preloader">
         <div class="sk-rotating-plane"></div>
     </div>
 
     <!-- =========================
-         NAVIGATION LINKS
-    ============================== -->
+             NAVIGATION LINKS
+        ============================== -->
     @include('dash.nav')
 
     <div class="bolColven">
@@ -90,8 +90,8 @@
                                                         NOMBRE DEL BENEFICIARIO:
                                                     </h4>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id="nombre_b_form2" name="nombre_b_form2"
-                                                            placeholder="NOMBRE" />
+                                                        <input type="text" class="form-control" id="nombre_b_form2"
+                                                            name="nombre_b_form2" placeholder="NOMBRE" />
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
@@ -99,8 +99,8 @@
                                                         CEDULA DEL BENEFICIARIO:
                                                     </h4>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id="cedula_b_form2" name="cedula_b_form2"
-                                                            placeholder="NRO DOCUMENTO" />
+                                                        <input type="text" class="form-control" id="cedula_b_form2"
+                                                            name="cedula_b_form2" placeholder="NRO DOCUMENTO" />
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
@@ -108,18 +108,43 @@
                                                         BANCO
                                                     </h4>
                                                     <div class="form-group">
-                                                        <select class="form-control" id="banco_b_form2" name="banco_b_form2">
+                                                        <select class="form-control" id="banco_b_form2"
+                                                            name="banco_b_form2">
                                                             <option disabled="" selected="">
                                                                 - SELECCIONAR BANCO -
                                                             </option>
-                                                            <option>BCP</option>
-                                                            <option>INTERBANK</option>
-                                                            <option>BBVA CONTINENTAL</option>
-                                                            <option>SCOTIABANK</option>
-                                                            <option>BANBIF</option>
-                                                            <option>BANCO PICHINCHA</option>
-                                                            <option>BANCO DE LA NACION</option>
-                                                            <option>OTRO</option>
+                                                            <option>Banesco Banco Universal</option>
+                                                            <option>Banco de Venezuela</option>
+                                                            <option>Banco Provincial</option>
+                                                            <option>Banco Mercantil</option>
+                                                            <option>Banco Occidental de Descuento</option>
+                                                            <option>Bancaribe</option>
+                                                            <option>Banco Exterior</option>
+                                                            <option>Venezolano de Crédito</option>
+                                                            <option>Banco Central de Venezuela</option>
+                                                            <option>Banco Industrial de Venezuela</option>
+                                                            <option>Banco Caroní</option>
+                                                            <option>Banco Sofitasa</option>
+                                                            <option>Banco Plaza Banco Universal</option>
+                                                            <option>Banco de la Gente Emprendedora</option>
+                                                            <option>Banco del Pueblo Soberano</option>
+                                                            <option>Banco Fondo Común</option>
+                                                            <option>100% Banco</option>
+                                                            <option>DelSur Banco Universal</option>
+                                                            <option>Banco del Tesoro</option>
+                                                            <option>Banco Agrícola de Venezuela</option>
+                                                            <option>Bancrecer, Banco Microfinanciero</option>
+                                                            <option>Mi Banco Banco Microfinanciero</option>
+                                                            <option>Banco Activo</option>
+                                                            <option>Bancamiga Banco Microfinanciero</option>
+                                                            <option>Banco Internacional de Desarrollo</option>
+                                                            <option>Banplus Banco Universal</option>
+                                                            <option>Banco Bicentenario Banco Universal</option>
+                                                            <option>Banco Espirito Santo</option>
+                                                            <option>Banco de la Fuerza Armada Nacional Bolivariana</option>
+                                                            <option>Citibank</option>
+                                                            <option>Banco Nacional de Crédito</option>
+                                                            <option>Instituto Municipal de Crédito Popular</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -130,8 +155,8 @@
                                                         NUMERO DE CUENTA:
                                                     </h4>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id="nro_cuenta_form2" name="nro_cuenta_form2"
-                                                            placeholder="NRO DE CUENTA" />
+                                                        <input type="text" class="form-control" id="nro_cuenta_form2"
+                                                            name="nro_cuenta_form2" placeholder="NRO DE CUENTA" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -142,7 +167,7 @@
                                                     </h4>
                                                     <div class="form-check">
                                                         <input class="form-check-input radio-p" name="radioNoLabel2"
-                                                            type="radio" value="V" id="check_v_bc" checked/>
+                                                            type="radio" value="V" id="check_v_bc" checked />
                                                         <label class="form-check-label" for="check_v_bc">
                                                             V
                                                         </label>
@@ -175,16 +200,15 @@
                                                     </h4>
                                                     <div class="form-check">
                                                         <input class="form-check-input radio-p" name="radioTypeBC"
-                                                            type="radio" value="ahorros"
-                                                            id="check_ahorros_bc" checked/>
+                                                            type="radio" value="ahorros" id="check_ahorros_bc"
+                                                            checked />
                                                         <label class="form-check-label" for="check_ahorros_bc">
                                                             AHORROS
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input radio-p" name="radioTypeBC"
-                                                            type="radio" value="corriente"
-                                                            id="check_corriente_bc" />
+                                                            type="radio" value="corriente" id="check_corriente_bc" />
                                                         <label class="form-check-label" for="check_corriente_bc">
                                                             CORRIENTE
                                                         </label>
@@ -199,8 +223,8 @@
                                                         TU NOMBRE:
                                                     </h4>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id="nombre_d_form2" name="nombre_d_form2"
-                                                            placeholder="NOMBRE" />
+                                                        <input type="text" class="form-control" id="nombre_d_form2"
+                                                            name="nombre_d_form2" placeholder="NOMBRE" />
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
@@ -208,7 +232,8 @@
                                                         TU IDENTIFICACION:
                                                     </h4>
                                                     <div class="form-group">
-                                                        <input type="number" class="form-control" id="identificacion_d_form2" name="identificacion_d_form2"
+                                                        <input type="number" class="form-control"
+                                                            id="identificacion_d_form2" name="identificacion_d_form2"
                                                             placeholder="IDENTIFICACION" />
                                                     </div>
                                                 </div>
@@ -217,8 +242,8 @@
                                                         CORREO ELECTRONICO:
                                                     </h4>
                                                     <div class="form-group">
-                                                        <input type="email" class="form-control" id="correo_d_form2" name="correo_d_form2"
-                                                            placeholder="EMAIL" />
+                                                        <input type="email" class="form-control" id="correo_d_form2"
+                                                            name="correo_d_form2" placeholder="EMAIL" />
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
@@ -226,8 +251,8 @@
                                                         TELEFONO:
                                                     </h4>
                                                     <div class="form-group">
-                                                        <input type="number" class="form-control" id="telefono_d_form2" name="telefono_d_form2"
-                                                            placeholder="NRO TELEFONO" />
+                                                        <input type="number" class="form-control" id="telefono_d_form2"
+                                                            name="telefono_d_form2" placeholder="NRO TELEFONO" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -239,13 +264,17 @@
                                                         MONTO A CAMBIAR $:
                                                     </h4>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id="monto_enviar_d_form2" name="monto_enviar_d_form2"
-                                                            placeholder="MONTO" onkeyup="dev_formato_moneda_form2(id, value)"/>
-                                                        <div id="alerta_monto_form2" class="alert alert-danger" style="display: none">El valor minimo es $10.000*</div>
+                                                        <input type="text" class="form-control"
+                                                            id="monto_enviar_d_form2" name="monto_enviar_d_form2"
+                                                            placeholder="MONTO"
+                                                            onkeyup="dev_formato_moneda_form2(id, value)" />
+                                                        <div id="alerta_monto_form2" class="alert alert-danger"
+                                                            style="display: none">El valor minimo es $10.000*</div>
                                                     </div>
                                                     <p style="text-align: left; display: inline-block;">Conversión a
                                                         Bolívares:</p>
-                                                    <p style="text-align: left; display: inline-block;" id="conversion_form2"><b>$</b>00</p>
+                                                    <p style="text-align: left; display: inline-block;"
+                                                        id="conversion_form2"><b>$</b>00</p>
                                                 </div>
                                                 <div class="col-sm-5" style="text-align: left;">
                                                     <p style="text-align: justify;"><i class="fa-solid fa-image"></i>
@@ -255,13 +284,30 @@
                                                         de archivos permitidos: gif, jpeg, png, jpg | Cantidad maxima de
                                                         archivo: 1 | Cantidad minima de archivo: 1</p>
                                                     <hr>
-                                                    <input type="file" class="form-control" id="file_d_form2" name="file_d_form2" />
+                                                    <input type="file" class="form-control" id="file_d_form2"
+                                                        name="file_d_form2" />
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row" style="margin-left: 10px">
+                                                <div class="form-check">
+                                                    <input
+                                                        class="form-check-input radio-p"
+                                                        type="radio"
+                                                        value="check_terminos_bolivares_colven"
+                                                        id="check_terminos_bolivares_colven"
+                                                        style="display: inline-block;"
+                                                    />
+                                                    <label class="form-check-label" for="check_terminos_bolivares_colven" style="display: inline-block;">
+                                                        Al enviar este formulario, usted está aceptando nuestros <a href="../sites/politicas" target="_blank">Terminos y Condiciones</a>
+                                                    </label>
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="row" style="text-align: center;">
                                                 <div class="col-md-12">
-                                                    <button type="button" onclick="send_form_bolivares_colven()" class="btn btn-primary" style="width: 100%;">
+                                                    <button type="button" onclick="send_form_bolivares_colven()"
+                                                        class="btn btn-primary" style="width: 100%;">
                                                         Enviar
                                                     </button>
                                                 </div>
@@ -279,8 +325,8 @@
     </div>
 
     <!-- =========================
-        FOOTER SECTION
-    ============================== -->
+            FOOTER SECTION
+        ============================== -->
     @include('dash.footer')
 
     <!-- Back top -->
