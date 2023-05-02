@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
                 'descripcion' => $status[$j],
             ]);
         }
-        $tasa = ["pay-paypal"];
+        $tasa = ["pay-paypal", "pay-bolivares-colven"];
         for ($o = 0; $o < count($tasa); $o++) {
             DB::table('tasa_cambio')->insert([
                 'descripcion' => $tasa[$o],

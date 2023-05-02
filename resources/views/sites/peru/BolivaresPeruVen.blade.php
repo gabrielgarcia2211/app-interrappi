@@ -89,7 +89,8 @@
                 <!--      Wizard container        -->
                 <div class="wizard-container" style="margin-bottom: 50px; margin-top: 20px;">
                     <div class="card-wiz wizard-card" data-color="azzure" id="wizard">
-                        <form action="" method="">
+                        <form action="../form/save/BolivaresPeruVen" method="POST" id="BolivaresPeruVen-form">
+                            @csrf
                             <div class="wizard-navigation">
                                 <ul>
                                     <li>
@@ -110,8 +111,8 @@
                                                     NOMBRE DEL BENEFICIARIO:
                                                 </h4>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" id=""
-                                                        placeholder="NOMBRE" />
+                                                    <input type="text" class="form-control" id="nombre_b_form3"
+                                                    name="nombre_b_form3" placeholder="NOMBRE" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
@@ -119,8 +120,8 @@
                                                     CEDULA DEL BENEFICIARIO:
                                                 </h4>
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control" id=""
-                                                        placeholder="NOMBRE" />
+                                                    <input type="number" class="form-control" id="cedula_b_form3"
+                                                    name="cedula_b_form3" placeholder="NOMBRE" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
@@ -164,7 +165,7 @@
                                                     BANCO:
                                                 </h4>
                                                 <div class="form-group">
-                                                    <select class="form-control">
+                                                    <select class="form-control" id="banco_b_form3">
                                                         <option disabled="" selected="">
                                                             - SELECCIONAR BANCO -
                                                         </option>
@@ -228,12 +229,12 @@
                                                     NUMERO DE CUENTA:
                                                 </h4>
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control" id=""
-                                                        placeholder="CUENTA" />
+                                                    <input type="number" class="form-control" id="nro_cuenta_form3"
+                                                    name="nro_cuenta_form3" placeholder="CUENTA" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-4 moneda-otro-view">
-
+                                                
                                             </div>
                                         </div>
                                         <div class="row">
@@ -280,6 +281,34 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <h4 class="sub-descripction-label">
+                                                    MONTO A CAMBIAR $:
+                                                </h4>
+                                                <div class="form-group">
+                                                    <input
+                                                        type="number"
+                                                        class="form-control"
+                                                        id="monto_b_form3"
+                                                        name="monto_b_form3"
+                                                        placeholder="MONTO"
+                                                        onkeyup="changeValue(this.value)"
+                                                    />
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Monto BS</label>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <p id="para"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <br>
                                         <hr>
                                         <div class="row">
@@ -323,8 +352,8 @@
                                                     NOMBRE DEL DEPOSITANTE:
                                                 </h4>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" id=""
-                                                        placeholder="NOMBRE" />
+                                                    <input type="text" class="form-control" id="nombre_d_form3"
+                                                    name="nombre_d_form3" placeholder="NOMBRE" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
@@ -332,8 +361,8 @@
                                                     EMAIL DEL DEPOSITANTE:
                                                 </h4>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" id=""
-                                                        placeholder="EMAIL" />
+                                                    <input type="text" class="form-control" id="correo_d_form3"
+                                                    name="correo_d_form3" placeholder="EMAIL" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
@@ -341,8 +370,20 @@
                                                     CELULAR DEL DEPOSITANTE:
                                                 </h4>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" id=""
-                                                        placeholder="NOMBRE" />
+                                                    <input type="number" class="form-control" id="telefono_d_form3"
+                                                    name="telefono_d_form3" placeholder="CELULAR" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <h4 class="sub-descripction-label">
+                                                    TU IDENTIFICACION:
+                                                </h4>
+                                                <div class="form-group">
+                                                    <input type="number" class="form-control"
+                                                        id="identificacion_d_form3" name="identificacion_d_form3"
+                                                        placeholder="IDENTIFICACION" />
                                                 </div>
                                             </div>
                                         </div>
@@ -353,7 +394,7 @@
                                                     archivos permitidos: gif, jpeg, png, jpg | Cantidad maxima de archivo: 1
                                                     | Cantidad minima de archivo: 1</p>
                                                 <hr>
-                                                <input type="file" class="form-control" id="customFile" />
+                                                <input type="file" class="form-control" id="file_form3_b" nameid="file_form3_b" />
                                             </div>
                                         </div>
                                         <br>
