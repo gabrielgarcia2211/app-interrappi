@@ -36,18 +36,18 @@
         </center>
     </div>
     <center>
-        <div class="numCuentas">
-
+        <div class="numCuentas" >
             <h3>NUESTROS NÚMEROS DE CUENTAS</h3>
             <ul class="item">
-
                 <li> Deposite o transfiera a nuestro siguiente número de cuenta. El monto mínimo a depositar es 10,000
                     pesos. Dudas o consultas, escríbanos a nuestras redes sociales (Facebook o Instagram).</li><br>
                 <br>
             </ul>
-            <h2>esperando la cuenta </h2>
-
+            <h2>Bancolombia: Mawir Ruiz</h2>
+            <h3><b>08800011815</b> - Ahorros</h3>
+            <h3>C.E 5005328728</h3>
         </div>
+        <br>
     </center>
     <div>
         <div class="formuPayCol" id="formuPayCol">

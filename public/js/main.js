@@ -1,5 +1,6 @@
 var $validator_form_paypal;
 var $validator_form_bolivares_colven;
+var $validator_form_bolivares_peruven;
 var $validator_status_formu;
 var tasa_cambio = "";
 // VALIDACION DE CAMPOS
@@ -124,8 +125,9 @@ $(document).ready(function () {
             },
         },
     });
-    $validator_form_bolivares_peruven = $("BolivaresPeruVen-form").validate({
-        rules : {
+     // Validamos los campos importantes - FORM3 BolivaresPeruVen
+    $validator_form_bolivares_peruven = $("#BolivaresPeruVen-form").validate({
+        rules: {
             nombre_b_form3: {
                 required: true,
                 maxlength: 100,
@@ -147,7 +149,7 @@ $(document).ready(function () {
                 required: true,
                 digits: true,
             },
-            telefono_b_form2: {
+            telefono_b_form3: {
                 required: true,
                 digits: true,
                 maxlength: 20,
@@ -199,33 +201,12 @@ $(".group-bolivares").click(function () {
     }
 });
 
-$(".group-bolivares").click(function () {
-    const containt = document.querySelector(".group-bolivares-view");
-    var ongkir = $(this).val();
-    if (ongkir == "check_h_bolivares_si") {
-        containt.innerHTML = `<h4 class="sub-descripction-label">
-        Ingrese el Teléfono vinculado a Pago Móvil:
-          </h4>
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-control"
-              id="telefono_b_form3"
-              name="telefono_b_form3"
-              placeholder="NUMERO DE TELEFONO"
-            />
-          </div>`;
-    } else {
-        containt.innerHTML = "";
-    }
-});
-
-$(".cantidadPeruVen").click(function () {
-    const containt = document.querySelector(".cantidadPeruVen");
+$(".group-moneda").click(function () {
+    const containt = document.querySelector(".group-moneda-view");
     var ongkir = $(this).val();
     if (ongkir == "check_moneda_soles") {
         containt.innerHTML = `<h4 class="sub-descripction-label">
-        MONTO A CAMBIAR $:
+                MONTO A CAMBIAR $:
             </h4>
             <div class="form-group">
                 <input
@@ -233,12 +214,21 @@ $(".cantidadPeruVen").click(function () {
                     class="form-control"
                     id="monto_b_form3"
                     name="monto_b_form3"
-                    placeholder="MONTO SOLES"
+                    placeholder="MONTO"
+                    onkeyup="changeValue(this.value)"
                 />
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label>Monto BS</label>
+                </div>
+                <div class="col-sm-4">
+                    <p id="para"></p>
+                </div>
             </div>`;
-    } else if (ongkir == "check_moneda_dolares") {
+    } else {
         containt.innerHTML = `<h4 class="sub-descripction-label">
-        MONTO A CAMBIAR $:
+                MONTO A CAMBIAR $:
             </h4>
             <div class="form-group">
                 <input
@@ -246,7 +236,35 @@ $(".cantidadPeruVen").click(function () {
                     class="form-control"
                     id="monto_b_form3"
                     name="monto_b_form3"
-                    placeholder="MONTO DOLARES"
+                    placeholder="MONTO"
+                    onkeyup="changeValue(this.value)"
+                />
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label>Monto BS</label>
+                </div>
+                <div class="col-sm-4">
+                    <p id="para"></p>
+                </div>
+            </div>`;
+    }
+});
+
+$(".group-bolivares-bp").click(function () {
+    const containt = document.querySelector(".group-bolivares-view-bp");
+    var ongkir = $(this).val();
+    if (ongkir == "check_h_bolivares_si") {
+        containt.innerHTML = `<h4 class="sub-descripction-label">
+            Ingrese el Teléfono vinculado a Pago Móvil:
+            </h4>
+            <div class="form-group">
+                <input
+                type="text"
+                class="form-control"
+                id="telefono_b_form3"
+                name="telefono_b_form3"
+                placeholder="NUMERO DE TELEFONO"
                 />
             </div>`;
     } else {
@@ -256,12 +274,12 @@ $(".cantidadPeruVen").click(function () {
 
 function changeValue(newColor) {
     let sol = 6;
-    let dolar = 23.10;
-    var valor = document.getElementById('monto_b_form3').value;
-    if(document.getElementById('check_moneda_soles').checked){
-        document.getElementById('para').innerHTML = valor*sol;
-    } else if (document.getElementById('check_moneda_dolares').checked) {
-        document.getElementById('para').innerHTML = valor*dolar;
+    let dolar = 23.1;
+    var valor = document.getElementById("monto_b_form3").value;
+    if (document.getElementById("check_moneda_soles").checked) {
+        document.getElementById("para").innerHTML = valor * sol;
+    } else if (document.getElementById("check_moneda_dolares").checked) {
+        document.getElementById("para").innerHTML = valor * dolar;
     }
     //document.getElementById('para').innerHTML = valor;
 }
@@ -550,7 +568,7 @@ function get_form_user(event) {
 function get_comprobante(path) {
     Swal.fire({
         title: "Comprobante Cargado",
-        imageUrl: "../"+path,
+        imageUrl: "../" + path,
         imageWidth: 300,
         imageHeight: 300,
     });
@@ -681,7 +699,7 @@ function dev_formato_moneda_form2(id, value) {
         url: url,
         data: {
             tasa: "pay-bolivares-colven",
-            monto: value
+            monto: value,
         },
         success: function (response) {
             $("#conversion_form2").html("<b>$</b>" + response.monto_a_recibir);
@@ -691,7 +709,7 @@ function dev_formato_moneda_form2(id, value) {
 }
 
 // FORM3 BolivaresPeruVen
-function send_form_bolivares_peruven(){
+function send_form_bolivares_peruven() {
     var url = $("#BolivaresPeruVen-form").attr("action");
     var $valid = $("#BolivaresPeruVen-form").valid();
     if (!$valid) {
@@ -699,9 +717,10 @@ function send_form_bolivares_peruven(){
         return false;
     }
 
-    /* let elementoActivo = document.querySelector(
-        'input[id="check_terminos_bolivares_colven"]:checked'
+    let elementoActivo = document.querySelector(
+        'input[id="check_terminos_peru_venez"]:checked'
     );
+
     if (!elementoActivo) {
         Swal.fire({
             position: "center",
@@ -711,7 +730,7 @@ function send_form_bolivares_peruven(){
             timer: 1500,
         });
         return;
-    } */
+    } 
 
     var parametros = new FormData();
     var fields = $("#BolivaresPeruVen-form").serializeArray();

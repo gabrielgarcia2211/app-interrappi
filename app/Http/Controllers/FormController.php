@@ -454,124 +454,127 @@ class FormController extends Controller
     }
 
 
-// FORM3 BolivaresPeruVen
+    // FORM3 BolivaresPeruVen
     function save_form_bolivares_peruven(Request $request)
-        {
-            DB::beginTransaction();
+    {
+        DB::beginTransaction();
 
-            try {
-                # Ecribimos logs de la información a procesar
-                Log::debug('App\Controllers\FormController::save_form_bolivares_peruven');
+        Log::debug($request->all());
 
-                // Validar el archivo
-                $validator = Validator::make($request->all(), [
-                    'archivo' => 'nullable|file|max:5720' // tamaño máximo en kilobytes
-                ]);
+        try {
+            # Ecribimos logs de la información a procesar
+            Log::debug('App\Controllers\FormController::save_form_bolivares_peruven');
 
-                if ($validator->fails()) {
-                    return response('El archivo no es válido.', 400);
-                }
+            // Validar el archivo
+            $validator = Validator::make($request->all(), [
+                'archivo' => 'nullable|file|max:5720' // tamaño máximo en kilobytes
+            ]);
 
-                if (empty($request->all()["identificacion_d_form3"])) return response("EL campo identificacion debe contener un valor", 500);
-
-                $identificacion_d_form3 = $request->all()["identificacion_d_form3"];
-                $nombre_d_form3 = $request->all()["nombre_d_form3"];
-                $correo_d_form3 = $request->all()["correo_d_form3"];
-                $telefono_d_form3 = $request->all()["telefono_d_form3"];
-
-                $user = User::where("identificacion", $identificacion_d_form3)->first();
-                // si el usuario ya existe lo asociamos al formulario
-                if (empty($user)) {
-                    // verficamos la integridad del email
-                    $resp = User::where("email", $correo_d_form3)->first();
-                    if (!empty($resp)) {
-                        return response("EL correo electronico ya se encuentra asociado a otro cliente", 500);
-                    }
-
-                    $user = User::create([
-                        "name" => $nombre_d_form3,
-                        "email" => $correo_d_form3,
-                        "password" => rand() . now(),
-                        "identificacion" => $identificacion_d_form3,
-                        "telefono" => "",
-                        "instagram" => "",
-                        "pais_d_form1" => "",
-                        "rol_id" => 2,
-                    ]);
-                }
-
-                $nombre_b_form3 = $request->all()["nombre_b_form3"];
-                $cedula_b_form3 = $request->all()["cedula_b_form3"];
-                $banco_b_form3 = $request->all()["banco_b_form3"];
-                $nro_cuenta_form3 = $request->all()["nro_cuenta_form3"];
-                $radioLabelBol = $request->all()["radioLabelBol"];
-                $radioCuenta = $request->all()["radioCuenta"];
-                $monto_b_form3 = $request->all()["monto_b_form3"];
-
-                // obtenemos los datos relacionados al formulario
-                $id_moneda = TipoMoneda::find(2);
-                $id_entidad = TipoEntidad::find(2)->id;
-                $id_formulario = TipoFormulario::find(2)->id;
-
-                $formulario = Formulario::create([
-                    "nombre_beneficiario" => $nombre_b_form3,
-                    "cedula_beneficiario" => $cedula_b_form3,
-                    "banco_beneficiario" => $banco_b_form3,
-                    "telefono_beneficiario" => "N/A",
-                    "nro_cuenta" => $nro_cuenta_form3,
-                    "tipo_persona" => $radioLabelBol,
-                    "tipo_cuenta" => $radioCuenta,
-                    "monto_enviar" => $monto_b_form3,
-                    "imagen_comprobante" => "",
-                    "terminos_comprobante" => "OK",
-                    "email_comprobante" => "N/A",
-                    "id_moneda" => $id_moneda->id,
-                    "id_entidad" => $id_entidad,
-                    "id_formulario" => $id_formulario,
-                    "id_user" => $user->id,
-                    "id_estado" => 1,
-                    "archivo" => ''
-                ]);
-
-                // enviamos el email de informacion
-                $data = [
-                    "nombre" => $nombre_d_form3,
-                    "id" => $user->id,
-                    "estadoEnvio" => "EN PROCESO",
-                    "cedula" => $identificacion_d_form3,
-                    "telefono" => $telefono_d_form3,
-                    "MontoEnviar" => $monto_b_form3,
-                    "nombreBeneficiario" => $nombre_b_form3,
-                    "cedulaBeneficiario" => $cedula_b_form3,
-                    "banco" => $banco_b_form3,
-                    "tipoCuenta" => $radioCuenta,
-                    "numeroCuenta" => $nro_cuenta_form3,
-                    "moneda" => $id_moneda->tipo,
-                ];
-
-                $file_form3_b = $request->all()["archivo"];
-                $filename = uniqid() . '.' . $file_form3_b->getClientOriginalExtension();
-                $path = 'comprobantes/USER' . $formulario->id . 'F' . uniqid();
-
-                // Guardamos el archivo
-                $isSaved = Formulario::where("id", $formulario->id)->update([
-                    "imagen_comprobante" => 'storage/' . $path . '/' . $filename
-                ]);
-                if (!$isSaved) {
-                    throw new \Exception("No se encontro el registro", 202);
-                }
-
-                $file_form3_b->storeAs('public/' . $path, $filename);
-
-                Mail::to($correo_d_form2)->send(new NotificationsEmail($data));
-                DB::commit();
-            } catch (\Exception $e) {
-                DB::rollback();
-                Log::error('App\Controllers\FormController::save_form_bolivares_colven' . $e);
-                return response("", 500);
+            if ($validator->fails()) {
+                return response('El archivo no es válido.', 400);
             }
 
-            return response()->json(true);
-        
+            if (empty($request->all()["identificacion_d_form3"])) return response("EL campo identificacion debe contener un valor", 500);
+
+            $identificacion_d_form3 = $request->all()["identificacion_d_form3"];
+            $nombre_d_form3 = $request->all()["nombre_d_form3"];
+            $correo_d_form3 = $request->all()["correo_d_form3"];
+            $telefono_d_form3 = $request->all()["telefono_d_form3"];
+
+            $user = User::where("identificacion", $identificacion_d_form3)->first();
+            // si el usuario ya existe lo asociamos al formulario
+            if (empty($user)) {
+                // verficamos la integridad del email
+                $resp = User::where("email", $correo_d_form3)->first();
+                if (!empty($resp)) {
+                    return response("EL correo electronico ya se encuentra asociado a otro cliente", 500);
+                }
+
+                $user = User::create([
+                    "name" => $nombre_d_form3,
+                    "email" => $correo_d_form3,
+                    "password" => rand() . now(),
+                    "identificacion" => $identificacion_d_form3,
+                    "telefono" => "",
+                    "instagram" => "",
+                    "pais_d_form1" => "",
+                    "rol_id" => 2,
+                ]);
+            }
+
+            $nombre_b_form3 = $request->all()["nombre_b_form3"];
+            $cedula_b_form3 = $request->all()["cedula_b_form3"];
+            $banco_b_form3 = $request->all()["banco_b_form3"];
+            $telefono_b_form3 = (isset($request->all()["telefono_b_form3"]) ? $request->all()["telefono_b_form3"] : "N/A");
+            $nro_cuenta_form3 = $request->all()["nro_cuenta_form3"];
+            $radioLabelBol = $request->all()["radioLabelBol"];
+            $radioCuenta = $request->all()["radioCuenta"];
+            $monto_b_form3 = $request->all()["monto_b_form3"];
+            $radioMoneda = $request->all()["radioMoneda"];
+
+            // obtenemos los datos relacionados al formulario
+            $id_moneda = TipoMoneda::find(1);
+            $id_entidad = TipoEntidad::find(3)->id;
+            $id_formulario = TipoFormulario::find(3)->id;
+
+            $formulario = Formulario::create([
+                "nombre_beneficiario" => $nombre_b_form3,
+                "cedula_beneficiario" => $cedula_b_form3,
+                "banco_beneficiario" => $banco_b_form3,
+                "telefono_beneficiario" => $telefono_b_form3,
+                "nro_cuenta" => $nro_cuenta_form3,
+                "tipo_persona" => $radioLabelBol,
+                "tipo_cuenta" => $radioCuenta,
+                "monto_enviar" => $monto_b_form3 . " - " . $radioMoneda,
+                "imagen_comprobante" => "",
+                "terminos_comprobante" => "OK",
+                "email_comprobante" => "N/A",
+                "id_moneda" => $id_moneda->id,
+                "id_entidad" => $id_entidad,
+                "id_formulario" => $id_formulario,
+                "id_user" => $user->id,
+                "id_estado" => 1,
+                "archivo" => ''
+            ]);
+
+            // enviamos el email de informacion
+            $data = [
+                "nombre" => $nombre_d_form3,
+                "id" => $user->id,
+                "estadoEnvio" => "EN PROCESO",
+                "cedula" => $identificacion_d_form3,
+                "telefono" => $telefono_d_form3,
+                "MontoEnviar" => $monto_b_form3,
+                "nombreBeneficiario" => $nombre_b_form3,
+                "cedulaBeneficiario" => $cedula_b_form3,
+                "banco" => $banco_b_form3,
+                "tipoCuenta" => $radioCuenta,
+                "numeroCuenta" => $nro_cuenta_form3,
+                "moneda" => $id_moneda->tipo,
+            ];
+
+            $file_form3_b = $request->all()["archivo"];
+            $filename = uniqid() . '.' . $file_form3_b->getClientOriginalExtension();
+            $path = 'comprobantes/USER' . $formulario->id . 'F' . uniqid();
+
+            // Guardamos el archivo
+            $isSaved = Formulario::where("id", $formulario->id)->update([
+                "imagen_comprobante" => 'storage/' . $path . '/' . $filename
+            ]);
+            if (!$isSaved) {
+                throw new \Exception("No se encontro el registro", 202);
+            }
+
+            $file_form3_b->storeAs('public/' . $path, $filename);
+
+            Mail::to($correo_d_form3)->send(new NotificationsEmail($data));
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error('App\Controllers\FormController::save_form_bolivares_colven' . $e);
+            return response("", 500);
+        }
+
+        return response()->json(true);
     }
 }

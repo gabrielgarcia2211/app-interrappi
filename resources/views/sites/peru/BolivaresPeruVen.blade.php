@@ -2,15 +2,15 @@
 
 @section('content')
     <!-- =========================
-         PRE LOADER
-    ============================== -->
+             PRE LOADER
+        ============================== -->
     <div class="preloader">
         <div class="sk-rotating-plane"></div>
     </div>
 
     <!-- =========================
-         NAVIGATION LINKS
-    ============================== -->
+             NAVIGATION LINKS
+        ============================== -->
     @include('dash.nav')
 
     <div class="bolperuven">
@@ -112,7 +112,7 @@
                                                 </h4>
                                                 <div class="form-group">
                                                     <input type="text" class="form-control" id="nombre_b_form3"
-                                                    name="nombre_b_form3" placeholder="NOMBRE" />
+                                                        name="nombre_b_form3" placeholder="NOMBRE" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
@@ -121,7 +121,7 @@
                                                 </h4>
                                                 <div class="form-group">
                                                     <input type="number" class="form-control" id="cedula_b_form3"
-                                                    name="cedula_b_form3" placeholder="NOMBRE" />
+                                                        name="cedula_b_form3" placeholder="CEDULA" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
@@ -130,28 +130,28 @@
                                                 </h4>
                                                 <div class="form-check">
                                                     <input class="form-check-input radio-p" name="radioLabelBol"
-                                                        type="radio" value="check_v_bolivares" id="check_v_bolivares" />
+                                                        type="radio" value="V" id="check_v_bolivares" checked/>
                                                     <label class="form-check-label" for="check_v_bolivares">
                                                         V
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input radio-p" name="radioLabelBol"
-                                                        type="radio" value="check_e_bolivares" id="check_e_bolivares" />
+                                                        type="radio" value="E" id="check_e_bolivares" />
                                                     <label class="form-check-label" for="check_e_bolivares">
                                                         E
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input radio-p" name="radioLabelBol"
-                                                        type="radio" value="check_j_bolivares" id="check_j_bolivares" />
+                                                        type="radio" value="J" id="check_j_bolivares" />
                                                     <label class="form-check-label" for="check_j_bolivares">
                                                         J
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input radio-p" name="radioLabelBol"
-                                                        type="radio" value="check_p_bolivares" id="check_p_bolivares" />
+                                                        type="radio" value="P" id="check_p_bolivares" />
                                                     <label class="form-check-label" for="check_p_bolivares">
                                                         P
                                                     </label>
@@ -165,61 +165,61 @@
                                                     BANCO:
                                                 </h4>
                                                 <div class="form-group">
-                                                    <select class="form-control" id="banco_b_form3">
+                                                    <select class="form-control" id="banco_b_form3" name="banco_b_form3">
                                                         <option disabled="" selected="">
                                                             - SELECCIONAR BANCO -
                                                         </option>
-                                                        <option value="0" data-num="">Banesco Banco Universal
+                                                        <option data-num="">Banesco Banco Universal
                                                         </option>
-                                                        <option value="1" data-num="">Banco de Venezuela</option>
-                                                        <option value="2" data-num="">Banco Provincial</option>
-                                                        <option value="3" data-num="">Banco Mercantil</option>
-                                                        <option value="4" data-num="">Banco Occidental de
+                                                        <option data-num="">Banco de Venezuela</option>
+                                                        <option data-num="">Banco Provincial</option>
+                                                        <option data-num="">Banco Mercantil</option>
+                                                        <option data-num="">Banco Occidental de
                                                             Descuento</option>
-                                                        <option value="5" data-num="">Bancaribe</option>
-                                                        <option value="6" data-num="">Banco Exterior</option>
-                                                        <option value="7" data-num="">Venezolano de Crédito
+                                                        <option data-num="">Bancaribe</option>
+                                                        <option data-num="">Banco Exterior</option>
+                                                        <option data-num="">Venezolano de Crédito
                                                         </option>
-                                                        <option value="8" data-num="">Banco Central de Venezuela
+                                                        <option data-num="">Banco Central de Venezuela
                                                         </option>
-                                                        <option value="9" data-num="">Banco Industrial de
+                                                        <option data-num="">Banco Industrial de
                                                             Venezuela</option>
-                                                        <option value="10" data-num="">Banco Caroní</option>
-                                                        <option value="11" data-num="">Banco Sofitasa</option>
-                                                        <option value="12" data-num="">Banco Plaza Banco Universal
+                                                        <option  data-num="">Banco Caroní</option>
+                                                        <option  data-num="">Banco Sofitasa</option>
+                                                        <option  data-num="">Banco Plaza Banco Universal
                                                         </option>
-                                                        <option value="13" data-num="">Banco de la Gente
+                                                        <option data-num="">Banco de la Gente
                                                             Emprendedora</option>
-                                                        <option value="14" data-num="">Banco del Pueblo Soberano
+                                                        <option data-num="">Banco del Pueblo Soberano
                                                         </option>
-                                                        <option value="15" data-num="">Banco Fondo Común</option>
-                                                        <option value="16" data-num="">100% Banco</option>
-                                                        <option value="17" data-num="">DelSur Banco Universal
+                                                        <option data-num="">Banco Fondo Común</option>
+                                                        <option data-num="">100% Banco</option>
+                                                        <option data-num="">DelSur Banco Universal
                                                         </option>
-                                                        <option value="18" data-num="">Banco del Tesoro</option>
-                                                        <option value="19" data-num="">Banco Agrícola de Venezuela
+                                                        <option data-num="">Banco del Tesoro</option>
+                                                        <option data-num="">Banco Agrícola de Venezuela
                                                         </option>
-                                                        <option value="20" data-num="">Bancrecer, Banco
+                                                        <option data-num="">Bancrecer, Banco
                                                             Microfinanciero</option>
-                                                        <option value="21" data-num="">Mi Banco Banco
+                                                        <option data-num="">Mi Banco Banco
                                                             Microfinanciero</option>
-                                                        <option value="22" data-num="">Banco Activo</option>
-                                                        <option value="23" data-num="">Bancamiga Banco
+                                                        <option data-num="">Banco Activo</option>
+                                                        <option data-num="">Bancamiga Banco
                                                             Microfinanciero</option>
-                                                        <option value="24" data-num="">Banco Internacional de
+                                                        <option  data-num="">Banco Internacional de
                                                             Desarrollo</option>
-                                                        <option value="25" data-num="">Banplus Banco Universal
+                                                        <option data-num="">Banplus Banco Universal
                                                         </option>
-                                                        <option value="26" data-num="">Banco Bicentenario Banco
+                                                        <option data-num="">Banco Bicentenario Banco
                                                             Universal</option>
-                                                        <option value="27" data-num="">Banco Espirito Santo
+                                                        <option data-num="">Banco Espirito Santo
                                                         </option>
-                                                        <option value="28" data-num="">Banco de la Fuerza Armada
+                                                        <option  data-num="">Banco de la Fuerza Armada
                                                             Nacional Bolivariana</option>
-                                                        <option value="29" data-num="">Citibank</option>
-                                                        <option value="30" data-num="">Banco Nacional de Crédito
+                                                        <option data-num="">Citibank</option>
+                                                        <option data-num="">Banco Nacional de Crédito
                                                         </option>
-                                                        <option value="31" data-num="">Instituto Municipal de
+                                                        <option data-num="">Instituto Municipal de
                                                             Crédito Popular</option>
                                                     </select>
                                                 </div>
@@ -230,11 +230,11 @@
                                                 </h4>
                                                 <div class="form-group">
                                                     <input type="number" class="form-control" id="nro_cuenta_form3"
-                                                    name="nro_cuenta_form3" placeholder="CUENTA" />
+                                                        name="nro_cuenta_form3" placeholder="CUENTA" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-4 moneda-otro-view">
-                                                
+
                                             </div>
                                         </div>
                                         <div class="row">
@@ -244,15 +244,15 @@
                                                 </h4>
                                                 <div class="form-check">
                                                     <input class="form-check-input radio-p" name="radioCuenta"
-                                                        type="radio" value="check_ahorros_bolivares"
-                                                        id="check_ahorros_bolivares" />
+                                                        type="radio" value="ahorros"
+                                                        id="check_ahorros_bolivares" checked/>
                                                     <label class="form-check-label" for="check_ahorros_bolivares">
                                                         AHORROS
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input radio-p" name="radioCuenta"
-                                                        type="radio" value="check_corriente_bolivares"
+                                                        type="radio" value="corriente"
                                                         id="check_corriente_bolivares" />
                                                     <label class="form-check-label" for="check_corriente_bolivares">
                                                         CORRIENTE
@@ -265,7 +265,7 @@
                                                 </h4>
                                                 <div class="form-check">
                                                     <input class="form-check-input radio-p group-moneda"
-                                                        name="radioMoneda" type="radio" value="check_moneda_soles"
+                                                        name="radioMoneda" type="radio" value="soles"
                                                         id="check_moneda_soles" />
                                                     <label class="form-check-label" for="check_moneda_soles">
                                                         SOLES
@@ -273,7 +273,7 @@
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input radio-p group-moneda"
-                                                        name="radioMoneda" type="radio" value="check_moneda_dolares"
+                                                        name="radioMoneda" type="radio" value="dolares"
                                                         id="check_moneda_dolares" />
                                                     <label class="form-check-label" for="check_moneda_dolares">
                                                         DOLARES
@@ -283,30 +283,10 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                
+
                                             </div>
-                                            <div class="col-sm-4">
-                                                <h4 class="sub-descripction-label">
-                                                    MONTO A CAMBIAR $:
-                                                </h4>
-                                                <div class="form-group">
-                                                    <input
-                                                        type="number"
-                                                        class="form-control"
-                                                        id="monto_b_form3"
-                                                        name="monto_b_form3"
-                                                        placeholder="MONTO"
-                                                        onkeyup="changeValue(this.value)"
-                                                    />
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <label>Monto BS</label>
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <p id="para"></p>
-                                                    </div>
-                                                </div>
+                                            <div class="col-sm-4 group-moneda-view">
+
                                             </div>
                                         </div>
                                         <br>
@@ -353,7 +333,7 @@
                                                 </h4>
                                                 <div class="form-group">
                                                     <input type="text" class="form-control" id="nombre_d_form3"
-                                                    name="nombre_d_form3" placeholder="NOMBRE" />
+                                                        name="nombre_d_form3" placeholder="NOMBRE" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
@@ -362,7 +342,7 @@
                                                 </h4>
                                                 <div class="form-group">
                                                     <input type="text" class="form-control" id="correo_d_form3"
-                                                    name="correo_d_form3" placeholder="EMAIL" />
+                                                        name="correo_d_form3" placeholder="EMAIL" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
@@ -371,7 +351,7 @@
                                                 </h4>
                                                 <div class="form-group">
                                                     <input type="number" class="form-control" id="telefono_d_form3"
-                                                    name="telefono_d_form3" placeholder="CELULAR" />
+                                                        name="telefono_d_form3" placeholder="CELULAR" />
                                                 </div>
                                             </div>
                                         </div>
@@ -394,13 +374,29 @@
                                                     archivos permitidos: gif, jpeg, png, jpg | Cantidad maxima de archivo: 1
                                                     | Cantidad minima de archivo: 1</p>
                                                 <hr>
-                                                <input type="file" class="form-control" id="file_form3_b" nameid="file_form3_b" />
+                                                <input type="file" class="form-control" id="file_form3_b"
+                                                    nameid="file_form3_b" />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row" style="margin-left: 10px">
+                                            <div class="form-check">
+                                                <input class="form-check-input radio-p" type="radio"
+                                                    value="check_terminos_peru_venez" id="check_terminos_peru_venez"
+                                                    style="display: inline-block;" />
+                                                <label class="form-check-label" for="check_terminos_peru_venez"
+                                                    style="display: inline-block;">
+                                                    Al enviar este formulario, usted está aceptando nuestros <a
+                                                        href="../sites/politicas" target="_blank">Terminos y
+                                                        Condiciones</a>
+                                                </label>
                                             </div>
                                         </div>
                                         <br>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <button type="button" class="btn btn-primary" style="width: 100%;">
+                                                <button type="button" onclick="send_form_bolivares_peruven()"
+                                                    class="btn btn-primary" style="width: 100%;">
                                                     Enviar
                                                 </button>
                                             </div>
@@ -417,8 +413,8 @@
     </div>
 
     <!-- =========================
-        FOOTER SECTION
-    ============================== -->
+            FOOTER SECTION
+        ============================== -->
     @include('dash.footer')
 
     <!-- Back top -->
