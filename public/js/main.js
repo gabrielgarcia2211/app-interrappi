@@ -124,6 +124,58 @@ $(document).ready(function () {
             },
         },
     });
+    $validator_form_bolivares_peruven = $("BolivaresPeruVen-form").validate({
+        rules : {
+            nombre_b_form3: {
+                required: true,
+                maxlength: 100,
+            },
+            cedula_b_form3: {
+                required: true,
+                digits: true,
+                maxlength: 11,
+            },
+            banco_b_form3: {
+                required: true,
+            },
+            nro_cuenta_form3: {
+                required: true,
+                digits: true,
+                maxlength: 20,
+            },
+            monto_b_form3: {
+                required: true,
+                digits: true,
+            },
+            telefono_b_form2: {
+                required: true,
+                digits: true,
+                maxlength: 20,
+            },
+            nombre_d_form3: {
+                required: true,
+                maxlength: 100,
+            },
+            correo_d_form3: {
+                required: true,
+                email: true,
+                maxlength: 50,
+            },
+            telefono_d_form3: {
+                required: true,
+                digits: true,
+                maxlength: 20,
+            },
+            identificacion_d_form3: {
+                required: true,
+                digits: true,
+                maxlength: 20,
+            },
+            file_form3_b: {
+                required: true,
+            },
+        },
+    });
 });
 
 $(".group-bolivares").click(function () {
@@ -146,6 +198,84 @@ $(".group-bolivares").click(function () {
         containt.innerHTML = "";
     }
 });
+
+$(".group-bolivares").click(function () {
+    const containt = document.querySelector(".group-bolivares-view");
+    var ongkir = $(this).val();
+    if (ongkir == "check_h_bolivares_si") {
+        containt.innerHTML = `<h4 class="sub-descripction-label">
+        Ingrese el Teléfono vinculado a Pago Móvil:
+          </h4>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="telefono_b_form3"
+              name="telefono_b_form3"
+              placeholder="NUMERO DE TELEFONO"
+            />
+          </div>`;
+    } else {
+        containt.innerHTML = "";
+    }
+});
+
+$(".cantidadPeruVen").click(function () {
+    const containt = document.querySelector(".cantidadPeruVen");
+    var ongkir = $(this).val();
+    if (ongkir == "check_moneda_soles") {
+        containt.innerHTML = `<h4 class="sub-descripction-label">
+        MONTO A CAMBIAR $:
+            </h4>
+            <div class="form-group">
+                <input
+                    type="number"
+                    class="form-control"
+                    id="monto_b_form3"
+                    name="monto_b_form3"
+                    placeholder="MONTO SOLES"
+                />
+            </div>`;
+    } else if (ongkir == "check_moneda_dolares") {
+        containt.innerHTML = `<h4 class="sub-descripction-label">
+        MONTO A CAMBIAR $:
+            </h4>
+            <div class="form-group">
+                <input
+                    type="number"
+                    class="form-control"
+                    id="monto_b_form3"
+                    name="monto_b_form3"
+                    placeholder="MONTO DOLARES"
+                />
+            </div>`;
+    } else {
+        containt.innerHTML = "";
+    }
+});
+
+function changeValue(newColor) {
+    let sol = 6;
+    let dolar = 23.10;
+    var valor = document.getElementById('monto_b_form3').value;
+    if(document.getElementById('check_moneda_soles').checked){
+        document.getElementById('para').innerHTML = valor*sol;
+    } else if (document.getElementById('check_moneda_dolares').checked) {
+        document.getElementById('para').innerHTML = valor*dolar;
+    }
+    //document.getElementById('para').innerHTML = valor;
+}
+
+/* function conversion(monto){
+    let sol = 6;
+    let dolar = 23.10;
+    let monto = document.getElementById('monto_b_form3')
+    if(document.getElementById('check_moneda_soles')){
+        return sol*monto;
+    } else if (document.getElementById('check_moneda_soles')) {
+        return dolar*monto;
+    }
+} */
 
 // CAPTURAMOS EL TIPO DE MONEDA PARA LA CONVERSION
 // FORM1 INCIO
@@ -558,4 +688,80 @@ function dev_formato_moneda_form2(id, value) {
         },
         error: function (error) {},
     });
+}
+
+// FORM3 BolivaresPeruVen
+function send_form_bolivares_peruven(){
+    var url = $("#BolivaresPeruVen-form").attr("action");
+    var $valid = $("#BolivaresPeruVen-form").valid();
+    if (!$valid) {
+        $validator_form_bolivares_peruven.focusInvalid();
+        return false;
+    }
+
+    /* let elementoActivo = document.querySelector(
+        'input[id="check_terminos_bolivares_colven"]:checked'
+    );
+    if (!elementoActivo) {
+        Swal.fire({
+            position: "center",
+            icon: "warning",
+            title: "Debe aceptar los terminos y condiciones",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+        return;
+    } */
+
+    var parametros = new FormData();
+    var fields = $("#BolivaresPeruVen-form").serializeArray();
+
+    $.each(fields, function (i, field) {
+        parametros.append(field.name, field.value);
+    });
+
+    parametros.append("archivo", $("#file_form3_b")[0].files[0]);
+
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        method: "POST",
+        url: url,
+        data: parametros,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+            Swal.fire({
+                title: "Cargando",
+                text: "Creando solicitud...",
+                imageUrl: "https://img.webme.com/pic/a/andwas/cargando5.gif",
+                imageWidth: 200,
+                imageHeight: 180,
+                imageAlt: "Creando solicitud",
+                showCancelButton: false,
+                showConfirmButton: false,
+            });
+        },
+        success: function (response) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Solicitud Guardada",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        },
+        complete: function (res) {},
+        error: function (res) {
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: res.responseText,
+                showConfirmButton: false,
+                timer: 5000,
+            });
+        },
+    });
+    return false;
 }
