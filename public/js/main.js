@@ -125,7 +125,7 @@ $(document).ready(function () {
             },
         },
     });
-     // Validamos los campos importantes - FORM3 BolivaresPeruVen
+    // Validamos los campos importantes - FORM3 BolivaresPeruVen
     $validator_form_bolivares_peruven = $("#BolivaresPeruVen-form").validate({
         rules: {
             nombre_b_form3: {
@@ -206,7 +206,7 @@ $(".group-moneda").click(function () {
     var ongkir = $(this).val();
     if (ongkir == "check_moneda_soles") {
         containt.innerHTML = `<h4 class="sub-descripction-label">
-                MONTO A CAMBIAR $:
+                MONTO A CAMBIAR11 $:
             </h4>
             <div class="form-group">
                 <input
@@ -228,7 +228,7 @@ $(".group-moneda").click(function () {
             </div>`;
     } else {
         containt.innerHTML = `<h4 class="sub-descripction-label">
-                MONTO A CAMBIAR $:
+                MONTO A CAMBIAR111 $:
             </h4>
             <div class="form-group">
                 <input
@@ -273,15 +273,50 @@ $(".group-bolivares-bp").click(function () {
 });
 
 function changeValue(newColor) {
-    let sol = 6;
-    let dolar = 23.1;
     var valor = document.getElementById("monto_b_form3").value;
     if (document.getElementById("check_moneda_soles").checked) {
-        document.getElementById("para").innerHTML = valor * sol;
+        dev_formato_moneda_form3("pay-bolivares-peruven (soles)", valor)
+            .then(function (monto) {
+                document.getElementById("para").innerHTML = monto;
+            })
+            .catch(function (error) {
+                console.error(error); // Manejar el error en caso de que ocurra
+            });
     } else if (document.getElementById("check_moneda_dolares").checked) {
-        document.getElementById("para").innerHTML = valor * dolar;
+        dev_formato_moneda_form3("pay-bolivares-peruven (dolar)", valor)
+            .then(function (monto) {
+                document.getElementById("para").innerHTML = monto;
+            })
+            .catch(function (error) {
+                console.error(error); // Manejar el error en caso de que ocurra
+            });
     }
     //document.getElementById('para').innerHTML = valor;
+}
+
+function dev_formato_moneda_form3(tasa_send, value) {
+    var url = "../tasa/get/data";
+
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            type: "POST",
+            url: url,
+            data: {
+                tasa: tasa_send,
+                monto: value,
+            },
+            success: function (response) {
+                var monto = response.monto_a_recibir;
+                resolve(monto);
+            },
+            error: function (error) {
+                reject(error);
+            },
+        });
+    });
 }
 
 /* function conversion(monto){
@@ -730,7 +765,7 @@ function send_form_bolivares_peruven() {
             timer: 1500,
         });
         return;
-    } 
+    }
 
     var parametros = new FormData();
     var fields = $("#BolivaresPeruVen-form").serializeArray();

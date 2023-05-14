@@ -28,7 +28,7 @@
         <br> <br>
         <center>
             <h1>TASA DEL BOLÍVAR EN COLOMBIA</h1>
-            <h3>Valor al 11th febrero 2023</h3>
+            <h3>{{ \Carbon\Carbon::now()->format('jS F Y') }}</h3>
             <h1>´´´´´´´´´´´´´´´´´´´´´´´´</h1>
             <h1>Tasa = 220</h1>
             <h2>{{ '$10.000 Pesos = ' . (optional(App\Models\TasaCambio::where('descripcion', 'pay-bolivares-colven')->first())->valor ?? 'N/A') . ' Bs' }}
@@ -45,7 +45,7 @@
             </ul>
             <h2>Bancolombia: Mawir Ruiz</h2>
             <h3><b>08800011815</b> - Ahorros</h3>
-            <h3>C.E 5005328728</h3>
+            <h3>PASAPORTE 5005328728</h3>
         </div>
         <br>
     </center>

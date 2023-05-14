@@ -96,6 +96,16 @@ class TasaController extends Controller
 
 
                 return response()->json(['monto_a_pagar' => round($comision, 2), 'monto_a_recibir' => $monto_a_recibir]);
+            } else if ($tasa == "pay-bolivares-peruven (dolar)") {
+                $monto = $request->input('monto');
+                // Las Comisiones de BolivaresColVen  (Tasa * Monto)
+                $comision = $monto * $response->valor;
+                return response()->json(['monto_a_recibir' => number_format($comision, 2, '.', ',')]);
+            } else if ($tasa == "pay-bolivares-peruven (soles)") {
+                $monto = $request->input('monto');
+                // Las Comisiones de BolivaresColVen  (Tasa * Monto)
+                $comision = $monto * $response->valor;
+                return response()->json(['monto_a_recibir' => number_format($comision, 2, '.', ',')]);
             }
         }
     }

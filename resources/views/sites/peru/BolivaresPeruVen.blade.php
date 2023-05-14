@@ -28,10 +28,10 @@
         <br> <br>
         <center>
             <h1>TASA DEL BOLÍVAR EN PERÚ</h1>
-            <h2>Valor al 10th febrero 2023</h2>
+            <h2>{{ \Carbon\Carbon::now()->format('jS F Y') }}</h2>
             <h1>´´´´´´´´´´´´´´´´´´´´´´´´</h1>
-            <h1>1 Sol = 6.00 Bs.S</h1>
-            <h1>1 Dólar = 23.10 Bs.S</h1>
+            <h2>{{ '1 Sol = ' . (optional(App\Models\TasaCambio::where('descripcion', 'pay-bolivares-peruven (soles)')->first())->valor ?? 'N/A') . ' Bs' }}
+            <h2>{{ '1 Dólar = ' . (optional(App\Models\TasaCambio::where('descripcion', 'pay-bolivares-peruven (dolar)')->first())->valor ?? 'N/A') . ' Bs' }}
         </center>
     </div>
     <center>
@@ -67,7 +67,7 @@
                         <img width="150px" src="{{ asset('assets/images/codQr.jpeg') }}" class="img-responsive"
                             alt="paypal" />
                         <div class="speakers-thumb">
-                            <h3>Qr yamper</h3>
+                            <h3>QR yape</h3>
                             <h6>987919513</h6>
                             <h6>A nombre de Brandy Mejía</h6>
                         </div>
