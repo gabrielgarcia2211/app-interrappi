@@ -2,15 +2,15 @@
 
 @section('content')
     <!-- =========================
-             PRE LOADER
-        ============================== -->
+                     PRE LOADER
+                ============================== -->
     <div class="preloader">
         <div class="sk-rotating-plane"></div>
     </div>
 
     <!-- =========================
-             NAVIGATION LINKS
-        ============================== -->
+                     NAVIGATION LINKS
+                ============================== -->
     @include('dash.nav')
 
     <div class="bolColven">
@@ -30,13 +30,17 @@
             <h1>TASA DEL BOLÍVAR EN COLOMBIA</h1>
             <h3>{{ \Carbon\Carbon::now()->format('jS F Y') }}</h3>
             <h1>´´´´´´´´´´´´´´´´´´´´´´´´</h1>
-            <h1>Tasa = 220</h1>
-            <h2>{{ '$10.000 Pesos = ' . (optional(App\Models\TasaCambio::where('descripcion', 'pay-bolivares-colven')->first())->valor ?? 'N/A') . ' Bs' }}
+            @php
+                $tasaCambio = optional(App\Models\TasaCambio::where('descripcion', 'pay-bolivares-colven')->first())->valor;
+                $resultado = 10000 / $tasaCambio;
+            @endphp
+            <h1>Tasa {{ $tasaCambio }}</h1>
+            <h2>{{ $resultado }} BS </h2>
             </h2>
         </center>
     </div>
     <center>
-        <div class="numCuentas" >
+        <div class="numCuentas">
             <h3>NUESTROS NÚMEROS DE CUENTAS</h3>
             <ul class="item">
                 <li> Deposite o transfiera a nuestro siguiente número de cuenta. El monto mínimo a depositar es 10,000
@@ -291,15 +295,15 @@
                                             <br>
                                             <div class="row" style="margin-left: 10px">
                                                 <div class="form-check">
-                                                    <input
-                                                        class="form-check-input radio-p"
-                                                        type="radio"
+                                                    <input class="form-check-input radio-p" type="radio"
                                                         value="check_terminos_bolivares_colven"
                                                         id="check_terminos_bolivares_colven"
-                                                        style="display: inline-block;"
-                                                    />
-                                                    <label class="form-check-label" for="check_terminos_bolivares_colven" style="display: inline-block;">
-                                                        Al enviar este formulario, usted está aceptando nuestros <a href="../sites/politicas" target="_blank">Terminos y Condiciones</a>
+                                                        style="display: inline-block;" />
+                                                    <label class="form-check-label" for="check_terminos_bolivares_colven"
+                                                        style="display: inline-block;">
+                                                        Al enviar este formulario, usted está aceptando nuestros <a
+                                                            href="../sites/politicas" target="_blank">Terminos y
+                                                            Condiciones</a>
                                                     </label>
                                                 </div>
                                             </div>
@@ -325,8 +329,8 @@
     </div>
 
     <!-- =========================
-            FOOTER SECTION
-        ============================== -->
+                    FOOTER SECTION
+                ============================== -->
     @include('dash.footer')
 
     <!-- Back top -->

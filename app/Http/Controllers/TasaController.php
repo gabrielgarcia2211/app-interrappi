@@ -81,8 +81,10 @@ class TasaController extends Controller
             }
             if ($tasa == "pay-bolivares-colven") {
                 $monto = $request->input('monto');
-                // Las Comisiones de BolivaresColVen  (Tasa * Monto)
-                $comision = $monto * $response->valor;
+                // Las Comisiones de BolivaresColVen  (Monto / Tasa)
+                $comision =  $monto / $response->valor;
+                Log::Debug($response->valor);
+                Log::Debug($monto);
                 return response()->json(['monto_a_recibir' => number_format($comision, 2, '.', ',')]);
             } else if ($tasa == "pay-paypal") {
                 $monto = $request->input('monto');
@@ -93,8 +95,6 @@ class TasaController extends Controller
                 $comision = ($monto * $comision_porcentaje + $comision_fija) + $monto;
                 // Cálculo del monto a recibir en bolívares
                 $monto_a_recibir = $monto * $response->valor;
-
-
                 return response()->json(['monto_a_pagar' => round($comision, 2), 'monto_a_recibir' => $monto_a_recibir]);
             } else if ($tasa == "pay-bolivares-peruven (dolar)") {
                 $monto = $request->input('monto');

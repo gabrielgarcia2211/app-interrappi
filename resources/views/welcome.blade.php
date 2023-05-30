@@ -149,6 +149,8 @@
                             style="margin: 0 auto;" />
                         <div class="speakers-thumb">
                             <h3>TASA PERU</h3>
+                            <h2>{{ '1 Dólar = ' . (optional(App\Models\TasaCambio::where('descripcion', 'pay-bolivares-peruven (dolar)')->first())->valor ?? 'N/A') . ' Bs' }}
+                            </h2>
                             {{-- <h6>Marketing Guru</h6> --}}
                         </div>
                     </div>
