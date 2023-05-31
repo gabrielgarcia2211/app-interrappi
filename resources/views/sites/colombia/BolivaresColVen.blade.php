@@ -32,7 +32,7 @@
             <h1>´´´´´´´´´´´´´´´´´´´´´´´´</h1>
             @php
                 $tasaCambio = optional(App\Models\TasaCambio::where('descripcion', 'pay-bolivares-colven')->first())->valor;
-                $resultado = 10000 / $tasaCambio;
+                $resultado = round(10000 / $tasaCambio, 2);
             @endphp
             <h1>Tasa {{ $tasaCambio }}</h1>
             <h2>{{ $resultado }} BS </h2>
