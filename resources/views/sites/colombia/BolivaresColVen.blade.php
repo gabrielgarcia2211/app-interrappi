@@ -35,7 +35,7 @@
                 $resultado = round(10000 / $tasaCambio, 2);
             @endphp
             <h1>Tasa {{ $tasaCambio }}</h1>
-            <h2>{{ $resultado }} BS </h2>
+            <h2>10.000 = {{ $resultado }} BS </h2>
             </h2>
         </center>
     </div>
