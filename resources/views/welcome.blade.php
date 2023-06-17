@@ -181,7 +181,7 @@
                                 ============================== -->
     <section id="contact" class="parallax-section">
         <div class="container" data-wow-delay="0.6s">
-            <p class="elegirIntergiros">¿POR QUÉ ELEGIR INTERGIROS?</p>
+            <p class="elegirIntergiros">¿POR QUÉ ELEGIR INTERRAPPI?</p>
 
             <center>
                 <p><b> Dos razones importantes para elegirnos.</b></p>

@@ -183,7 +183,9 @@ class FormController extends Controller
             ->join("users", "users.id", "formulario.id_user")
             ->join("tipo_moneda", "tipo_moneda.id", "formulario.id_moneda")
             ->join("tipo_entidad", "tipo_entidad.id", "formulario.id_entidad")
-            ->join("tipo_formulario", "tipo_formulario.id", "formulario.id_formulario")->get();
+            ->join("tipo_formulario", "tipo_formulario.id", "formulario.id_formulario")
+            ->orderby('id', 'DESC')
+            ->get();
 
         return response()->json($response);
     }

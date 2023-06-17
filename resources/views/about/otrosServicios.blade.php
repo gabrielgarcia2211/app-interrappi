@@ -188,7 +188,7 @@
                                                     <p style="text-align: justify;">Cóntáctese a nuestras Redes Sociales,
                                                         Facebook o Instagram, para solicitar nuestros números de cuentas,
                                                         donde deberá realizar el pago. Nos encuentra como:
-                                                        <b>@intergiros.oficial</b></p>
+                                                        <b>@interrappi.co</b></p>
                                                 </div>
                                                 <div class="col-sm-5" style="text-align: left;">
                                                     <p style="text-align: justify;"><i class="fa-solid fa-image"></i> Si

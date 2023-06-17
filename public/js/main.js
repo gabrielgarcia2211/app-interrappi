@@ -178,6 +178,21 @@ $(document).ready(function () {
             },
         },
     });
+    setTimeout(function () {
+        // Obtenemos la posición del div de destino
+        var destinoOffset = $("#pay-paypal-form").offset().top;
+        // Obtenemos la altura de la ventana del navegador
+        var windowHeight = $(window).height();
+        // Calculamos la posición centrada del div de destino en la ventana
+        var scrollDestination = destinoOffset - windowHeight / 2;
+        // Hacemos scroll automático al div de destino con animación lenta
+        $("html, body").animate(
+            {
+                scrollTop: scrollDestination,
+            },
+            1500
+        ); // 1500 es la duración en milisegundos de la animación
+    }, 2000); // 2000 es el tiempo en milisegundos después de ingresar a la página
 });
 
 $(".group-bolivares").click(function () {
@@ -318,17 +333,6 @@ function dev_formato_moneda_form3(tasa_send, value) {
         });
     });
 }
-
-/* function conversion(monto){
-    let sol = 6;
-    let dolar = 23.10;
-    let monto = document.getElementById('monto_b_form3')
-    if(document.getElementById('check_moneda_soles')){
-        return sol*monto;
-    } else if (document.getElementById('check_moneda_soles')) {
-        return dolar*monto;
-    }
-} */
 
 // CAPTURAMOS EL TIPO DE MONEDA PARA LA CONVERSION
 // FORM1 INCIO
