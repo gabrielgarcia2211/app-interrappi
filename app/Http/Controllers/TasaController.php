@@ -106,6 +106,11 @@ class TasaController extends Controller
                 // Las Comisiones de BolivaresColVen  (Tasa * Monto)
                 $comision = $monto * $response->valor;
                 return response()->json(['monto_a_recibir' => number_format($comision, 2, '.', ',')]);
+            } else if ($tasa == "pay-skrill") {
+                $monto = $request->input('monto');
+                // Las Comisiones de BolivaresColVen  (Tasa * Monto)
+                $comision = $monto * $response->valor;
+                return response()->json(['monto_a_recibir' => number_format($comision, 2, '.', ',')]);
             }
         }
     }

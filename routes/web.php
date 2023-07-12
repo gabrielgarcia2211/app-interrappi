@@ -25,7 +25,7 @@ Route::post('/logout',  [App\Http\Controllers\Auth\LoginController::class, 'logo
 
 Route::group(['prefix' => 'form', /* 'middleware' => 'auth' */], function () {
     Route::post('/status', [App\Http\Controllers\FormController::class, 'get_form_paypal'])->name('form.get');
-    Route::post('/save/paypal', [App\Http\Controllers\FormController::class, 'save_form_paypal'])->name('form.paypal');
+    Route::post('/save/paypal', [App\Http\Controllers\FormController::class, 'save_form_principal'])->name('form.principal');
     Route::post('/save/BolivaresColVen', [App\Http\Controllers\FormController::class, 'save_form_bolivares_colven'])->name('form.bolivares.colven');
     Route::post('/save/BolivaresPeruVen', [App\Http\Controllers\FormController::class, 'save_form_bolivares_peruven'])->name('form.bolivares.peruven');
 });

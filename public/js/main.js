@@ -178,7 +178,7 @@ $(document).ready(function () {
             },
         },
     });
-    setTimeout(function () {
+   /*  setTimeout(function () {
         // Obtenemos la posición del div de destino
         var destinoOffset = $("#pay-paypal-form").offset().top;
         // Obtenemos la altura de la ventana del navegador
@@ -192,7 +192,7 @@ $(document).ready(function () {
             },
             1500
         ); // 1500 es la duración en milisegundos de la animación
-    }, 2000); // 2000 es el tiempo en milisegundos después de ingresar a la página
+    }, 2000); // 2000 es el tiempo en milisegundos después de ingresar a la página */
 });
 
 $(".group-bolivares").click(function () {
@@ -347,6 +347,9 @@ function dev_formato_moneda_form3(tasa_send, value) {
 function cap_type_pay(key) {
     const gridSpaces = document.querySelector(".container-type-pay");
     const gridInfo = document.querySelector(".container-type-pay-info");
+    $("#monto_enviar_d_form1").val(null);
+    $("#monto_pagar_d_form1").val(null);
+    $("#monto_recibir_d_form1").val(null);
 
     var newHtml = "";
     var infoHtml = "";
@@ -377,7 +380,7 @@ function cap_type_pay(key) {
         />
       </div>`;
 
-        cHtml += `<button type="button" onclick="send_form_paypal()" class="btn btn-primary">
+        cHtml += `<button type="button" onclick="send_form_principal('${key}')" class="btn btn-primary">
             Enviar
         </button></div>`;
 
@@ -390,7 +393,7 @@ function cap_type_pay(key) {
       <p style="text-align: left;">Tamaño maximo del archivo: 5.72 MB. | Tipo de archivos permitidos: gif, jpeg, png, jpg | Cantidad maxima de archivo: 1 | Cantidad minima de archivo: 1</p>
       <hr>
       <input type="file" class="form-control" id="file_form1_b" name="file_form1_b"/></div>`;
-        cHtml += `<button type="button" class="btn btn-primary">
+        cHtml += `<button type="button" onclick="send_form_principal('${key}')" class="btn btn-primary">
             Enviar
         </button></div>`;
     } else if (key == "pay-bitcoin") {
@@ -444,7 +447,7 @@ function cap_type_pay(key) {
     clickedRow.querySelector(".bg-pay").classList.add("pay-selected");
 }
 
-function send_form_paypal() {
+function send_form_principal(key) {
     event.preventDefault();
     var url = $("#pay-paypal-form").attr("action");
 
@@ -466,8 +469,18 @@ function send_form_paypal() {
         });
         return;
     }
+    var parametros = new FormData();
+    var fields = $("#pay-paypal-form").serializeArray();
 
-    var parametros = $("#pay-paypal-form").serializeArray();
+    $.each(fields, function (i, field) {
+        parametros.append(field.name, field.value);
+    });
+    
+    if(key == "pay-skrill"){
+        parametros.append("archivo", $("#file_form1_b")[0].files[0]);
+    }
+   
+    parametros.append("key_form", key);
 
     $.ajax({
         headers: {
@@ -476,6 +489,8 @@ function send_form_paypal() {
         method: "POST",
         url: url,
         data: parametros,
+        processData: false,
+        contentType: false,
         beforeSend: function () {
             Swal.fire({
                 title: "Cargando",

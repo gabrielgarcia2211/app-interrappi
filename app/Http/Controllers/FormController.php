@@ -18,13 +18,13 @@ use Illuminate\Support\Facades\Validator;
 class FormController extends Controller
 {
     // FORM1 INCIO
-    function save_form_paypal(Request $request)
+    function save_form_principal(Request $request)
     {
         DB::beginTransaction();
 
         try {
             # Ecribimos logs de la información a procesar
-            Log::debug('App\Controllers\FormController::save_form_paypal');
+            Log::debug('App\Controllers\FormController::save_form_principal ');
 
             if (empty($request->all()["identificacion_d_form1"])) return response("EL campo identificacion debe contener un valor", 500);
 
@@ -64,54 +64,111 @@ class FormController extends Controller
             $radioNoLabel = $request->all()["radioNoLabel"];
             $radioTypeCu = $request->all()["radioTypeCu"];
             $monto_enviar_d_form1 = $request->all()["monto_enviar_d_form1"];
-            $email_d_form1 = $request->all()["email_d_form1"];
+            $email_d_form1 = (isset($request->all()["email_d_form1"]) ? $request->all()["email_d_form1"] : "N/A");
 
-            // obtenemos los datos relacionados al formulario
-            $id_moneda = TipoMoneda::find(1);
-            $id_entidad = TipoEntidad::find(1)->id;
-            $id_formulario = TipoFormulario::find(1)->id;
+            if ($request->all()["key_form"] == "pay-paypal") {
+                // obtenemos los datos relacionados al formulario
+                $id_moneda = TipoMoneda::find(1);
+                $id_entidad = TipoEntidad::find(1)->id;
+                $id_formulario = TipoFormulario::find(1)->id;
 
-            Formulario::create([
-                "nombre_beneficiario" => $nombre_b_form1,
-                "cedula_beneficiario" => $cedula_b_form1,
-                "banco_beneficiario" => $banco_b_form1,
-                "telefono_beneficiario" => $telefono_b_form1,
-                "nro_cuenta" => $nro_cuenta_form1,
-                "tipo_persona" => $radioNoLabel,
-                "tipo_cuenta" => $radioTypeCu,
-                "monto_enviar" => $monto_enviar_d_form1,
-                "imagen_comprobante" => "",
-                "terminos_comprobante" => "OK",
-                "email_comprobante" => $email_d_form1,
-                "id_moneda" => $id_moneda->id,
-                "id_entidad" => $id_entidad,
-                "id_formulario" => $id_formulario,
-                "id_user" => $user->id,
-                "id_estado" => 1,
-                "archivo" => ''
-            ]);
+                Formulario::create([
+                    "nombre_beneficiario" => $nombre_b_form1,
+                    "cedula_beneficiario" => $cedula_b_form1,
+                    "banco_beneficiario" => $banco_b_form1,
+                    "telefono_beneficiario" => $telefono_b_form1,
+                    "nro_cuenta" => $nro_cuenta_form1,
+                    "tipo_persona" => $radioNoLabel,
+                    "tipo_cuenta" => $radioTypeCu,
+                    "monto_enviar" => $monto_enviar_d_form1,
+                    "imagen_comprobante" => "",
+                    "terminos_comprobante" => "OK",
+                    "email_comprobante" => $email_d_form1,
+                    "id_moneda" => $id_moneda->id,
+                    "id_entidad" => $id_entidad,
+                    "id_formulario" => $id_formulario,
+                    "id_user" => $user->id,
+                    "id_estado" => 1,
+                    "archivo" => ''
+                ]);
 
-            // enviamos el email de informacion
-            $data = [
-                "nombre" => $nombre_d_form1,
-                "id" => $user->id,
-                "estadoEnvio" => "EN PROCESO",
-                "cedula" => $identificacion_d_form1,
-                "telefono" => $telefono_d_form1,
-                "MontoEnviar" => $monto_enviar_d_form1,
-                "nombreBeneficiario" => $nombre_b_form1,
-                "cedulaBeneficiario" => $cedula_b_form1,
-                "banco" => $banco_b_form1,
-                "tipoCuenta" => $radioTypeCu,
-                "numeroCuenta" => $nro_cuenta_form1,
-                "moneda" => $id_moneda->tipo,
-            ];
+                // enviamos el email de informacion
+                $data = [
+                    "nombre" => $nombre_d_form1,
+                    "id" => $user->id,
+                    "estadoEnvio" => "EN PROCESO",
+                    "cedula" => $identificacion_d_form1,
+                    "telefono" => $telefono_d_form1,
+                    "MontoEnviar" => $monto_enviar_d_form1,
+                    "nombreBeneficiario" => $nombre_b_form1,
+                    "cedulaBeneficiario" => $cedula_b_form1,
+                    "banco" => $banco_b_form1,
+                    "tipoCuenta" => $radioTypeCu,
+                    "numeroCuenta" => $nro_cuenta_form1,
+                    "moneda" => $id_moneda->tipo,
+                ];
+            } else if ($request->all()["key_form"] == "pay-skrill") {
+                // obtenemos los datos relacionados al formulario
+                $id_moneda = TipoMoneda::find(1);
+                $id_entidad = TipoEntidad::find(4)->id;
+                $id_formulario = TipoFormulario::find(4)->id;
+
+                $formulario = Formulario::create([
+                    "nombre_beneficiario" => $nombre_b_form1,
+                    "cedula_beneficiario" => $cedula_b_form1,
+                    "banco_beneficiario" => $banco_b_form1,
+                    "telefono_beneficiario" => $telefono_b_form1,
+                    "nro_cuenta" => $nro_cuenta_form1,
+                    "tipo_persona" => $radioNoLabel,
+                    "tipo_cuenta" => $radioTypeCu,
+                    "monto_enviar" => $monto_enviar_d_form1,
+                    "imagen_comprobante" => "",
+                    "terminos_comprobante" => "OK",
+                    "email_comprobante" => $email_d_form1,
+                    "id_moneda" => $id_moneda->id,
+                    "id_entidad" => $id_entidad,
+                    "id_formulario" => $id_formulario,
+                    "id_user" => $user->id,
+                    "id_estado" => 1,
+                    "archivo" => ''
+                ]);
+
+                // enviamos el email de informacion
+                $data = [
+                    "nombre" => $nombre_d_form1,
+                    "id" => $user->id,
+                    "estadoEnvio" => "EN PROCESO",
+                    "cedula" => $identificacion_d_form1,
+                    "telefono" => $telefono_d_form1,
+                    "MontoEnviar" => $monto_enviar_d_form1,
+                    "nombreBeneficiario" => $nombre_b_form1,
+                    "cedulaBeneficiario" => $cedula_b_form1,
+                    "banco" => $banco_b_form1,
+                    "tipoCuenta" => $radioTypeCu,
+                    "numeroCuenta" => $nro_cuenta_form1,
+                    "moneda" => $id_moneda->tipo,
+                ];
+
+                $file_form1_b = $request->all()["archivo"];
+                $filename = uniqid() . '.' . $file_form1_b->getClientOriginalExtension();
+                $path = 'comprobantes/USER' . $formulario->id . 'F' . uniqid();
+
+                // Guardamos el archivo
+                $isSaved = Formulario::where("id", $formulario->id)->update([
+                    "imagen_comprobante" => 'storage/' . $path . '/' . $filename
+                ]);
+                if (!$isSaved) {
+                    throw new \Exception("No se encontro el registro", 202);
+                }
+
+                $file_form1_b->storeAs('public/' . $path, $filename);
+            }
 
             Mail::to($correo_d_form1)->send(new NotificationsEmail($data));
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Log::error('App\Controllers\FormController::save_form_paypal' . $e);
+            Log::error('App\Controllers\FormController::save_form_principal ' . $e);
             return response("", 500);
         }
 
