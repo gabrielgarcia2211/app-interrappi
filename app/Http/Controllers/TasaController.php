@@ -92,7 +92,8 @@ class TasaController extends Controller
                 $comision_porcentaje = 0.054;
                 $comision_fija = 0.3;
                 // Calculamos la comisión
-                $comision = ($monto * $comision_porcentaje + $comision_fija) + $monto;
+                //$comision = ($monto * $comision_porcentaje + $comision_fija) + $monto;
+                $comision = (($monto + $comision_fija) * 100)/94.6;
                 // Cálculo del monto a recibir en bolívares
                 $monto_a_recibir = $monto * $response->valor;
                 return response()->json(['monto_a_pagar' => round($comision, 2), 'monto_a_recibir' => $monto_a_recibir]);

@@ -2,20 +2,20 @@
 
 @section('content')
     <!-- =========================
-                                        PRE LOADER
-                                    ============================== -->
+                                            PRE LOADER
+                                        ============================== -->
     <div class="preloader">
         <div class="sk-rotating-plane"></div>
     </div>
 
     <!-- =========================
-                                    NAVIGATION LINKS
-                                    ============================== -->
+                                        NAVIGATION LINKS
+                                        ============================== -->
     @include('dash.nav')
 
     <!-- =========================
-                                    INTRO SECTION
-                                    ============================== -->
+                                        INTRO SECTION
+                                        ============================== -->
 
     <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="2000" id="bs-carousel">
         <!-- Overlay -->
@@ -66,8 +66,8 @@
     </div>
 
     <!-- =========================
-                                    OVERVIEW SECTION
-                                    ============================== -->
+                                        OVERVIEW SECTION
+                                        ============================== -->
     <section id="overview" class="parallax-section">
         <div class="container">
             <center>
@@ -116,7 +116,8 @@
                             style="margin: 0 auto;" />
                         <div class="speakers-thumb">
                             <h3>TASA SKRILL</h3>
-                            <h2>{{ 'US $1.00 = ' . (optional(App\Models\TasaCambio::where('descripcion', 'pay-skrill')->first())->valor ?? 'N/A') . ' Bs' }}</h2>
+                            <h2>{{ 'US $1.00 = ' . (optional(App\Models\TasaCambio::where('descripcion', 'pay-skrill')->first())->valor ?? 'N/A') . ' Bs' }}
+                            </h2>
                         </div>
                     </div>
                 </div>
@@ -172,13 +173,13 @@
     </section>
 
     <!-- =========================
-                                    DETAIL SECTION
-                                    ============================== -->
+                                        DETAIL SECTION
+                                        ============================== -->
     @include('dash.form')
 
     <!-- =========================
-                                    CONTACT SECTION
-                                    ============================== -->
+                                        CONTACT SECTION
+                                        ============================== -->
     <section id="contact" class="parallax-section">
         <div class="container" data-wow-delay="0.6s">
             <p class="elegirIntergiros">¿POR QUÉ ELEGIR INTERRAPPI?</p>
@@ -272,8 +273,8 @@
     </div>
 
     <!-- =========================
-                                    FOOTER SECTION
-                                    ============================== -->
+                                        FOOTER SECTION
+                                        ============================== -->
     @include('dash.footer')
 
     <!-- Back top -->
