@@ -9,7 +9,7 @@
             <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
             <div class="login-form">
                 <form method="POST" action="{{ route('login') }}" id="login-form">
-                    @csrf
+                    {{ csrf_field() }}
                     <div class="sign-in-htm">
                         <div class="group">
                             <label for="login_email" class="label">Correo Electronico</label>

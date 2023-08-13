@@ -9,7 +9,9 @@
         placeholder="Buscar..."
         v-on:input="onFilterTextBoxChanged()"
       />
+      <ButtonReportComponent :row-data="this.rowData"/>
     </div>
+
     <ag-grid-vue
       style="width: 100%; height: 500px; padding: 5px"
       class="ag-theme-alpine"
@@ -30,6 +32,7 @@
 <script>
 // Importar Librerias o Modulos
 import { AgGridVue } from "ag-grid-vue";
+import ButtonReportComponent from "../tasa/ButtonReportComponent";
 
 export default {
   data() {
@@ -52,6 +55,7 @@ export default {
   },
   components: {
     AgGridVue,
+    ButtonReportComponent,
   },
   created() {
     this.loadColums();
